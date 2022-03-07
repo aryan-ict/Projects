@@ -1,0 +1,195 @@
+<odoo>
+    <!-- List View of the module,
+         which contains fields which were assigned in models file.-->
+    <record model="ir.ui.view" id="custom_fields_list">
+        <field name="name">tree.view.college.management</field>
+        <field name="model">college.management</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="mobile_no"/>
+                <field name="description"/>
+                <!-- Status field which contains status = badge with decoration color
+                     of with different keys assigned in status field -->
+                <field name="status"
+                       widget="badge"
+                       decoration-success="status=='process'"
+                       decoration-info="status=='confirm'"
+                       decoration-warning="status=='cancelled'"/>
+            </tree>
+
+        </field>
+    </record>
+
+    <!-- Another Tree view for the seperate menu,
+        which will change display when clicked on different menu. -->
+
+    <record model="ir.ui.view" id="college_management_tree_2">
+        <field name="name">view.form.college.management</field>
+        <field name="model">college.management</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="mobile_no"/>
+                <field name="description"/>
+                <field name="select_type"/>
+                <field name="dob"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View of the module -->
+    <record model="ir.ui.view" id="college_management_form">
+        <field name="name">view.form.college.management</field>
+        <field name="model">college.management</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- Will show button on the header of the form -->
+                    <!-- Assigning the action to the Sample Button -->
+                    <button name="%(action_window_open_wiz)d"
+                            type="action"
+                            string="Student Info"
+                            class="btn-primary"/>
+                    <button name="create_button"
+                            type="object"
+                            string="Create Name"
+                            class="btn-primary"/>
+                    <button name="write_button"
+                            type="object"
+                            string="Update Value"
+                            class="btn-primary"/>
+                    <button name="unlink_button"
+                            type="object"
+                            string="Unlink Button"
+                            class="btn-primary"/>
+                    <!-- Creating statusbar using widget, statusbar will be clickable and will show keys writen in status_visible attribute -->
+                    <field name="status"
+                           widget="statusbar"
+                           options="{'clickable':'1'}"
+                           statusbar_visible="draft,process,confirm"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="mobile_no"/>
+                        <field name="description"/>
+                        <!-- Creating radio button using radio widget -->
+                        <field name="select_type" widget="radio"
+                               options="{'horizontal':True}"/>
+                        <field name="dob"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>    <!-- Whole div section is to show chatter -->
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Kanban View of the module -->
+    <record id="college_management_kanban" model="ir.ui.view">
+        <field name="name">college.management.kanban</field>
+        <field name="model">college.management</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <ul>
+                                <li>
+                                    <field name="name"/>
+                                    <field name="status" widget="badge"
+                                           decoration-success="status=='process'"
+                                           decoration-info="status=='confirm'"
+                                           decoration-warning="status=='cancelled'"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="college_management_action_window">
+        <field name="name">College Details</field>
+        <field name="res_model">college.management</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="college_management_action_window_2">
+        <field name="name">college.management window</field>
+        <field name="res_model">college.management</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="college_management_tree_2"/>
+    </record>
+
+    <record model="ir.actions.act_window" id="college_management_action_window_3">
+        <field name="name">college.management window</field>
+        <field name="res_model">college.management</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="college_management_form"/>
+    </record>
+
+<!--    <record model="ir.actions.act_window" id="college_management_action_window_3">-->
+<!--        <field name="name">college.management.window</field>-->
+<!--        <field name="res_model">college.management.college.management</field>-->
+<!--        <field name="view_mode">kanban,form</field>-->
+<!--        <field name="view_id" ref="college.management_kanban"/>-->
+<!--        <field name="help">-->
+<!--            <p>-->
+
+<!--            </p>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+    <!-- server action to the one above -->
+    <!-- <record model="ir.actions.server" id="college.management_action_server">
+         <field name="name">College List</field>
+         <field name="model_id" ref="model_college.management_college.management"/>
+         <field name="state">code</field>
+         <field name="code">
+             action = {
+             "type": "ir.actions.act_window",
+             "view_mode": "tree,form",
+             "res_model": model._name,
+             "name":"College Server List"
+             }
+         </field>
+     </record> -->
+
+    <!-- Top menu item -->
+
+    <menuitem name="College Management"
+              id="college_management_menu_root"
+              action="college_management_action_window"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Student" id="college_management_menu_1" parent="college_management_menu_root"/>
+    <menuitem name="College" id="college_management_menu_2" parent="college_management_menu_root"/>
+    <menuitem name="Department" id="college_management_menu_3" parent="college_management_menu_root"/>
+<!--    <menuitem name="Student Info" id="college_management_menu_4" parent="college_management_menu_root"/>-->
+
+    <!-- actions -->
+
+    <menuitem name="List" id="menu_1_list" parent="college_management_menu_1"
+              action="college_management_action_window"/>
+    <menuitem name="Form" id="menu_1_form" parent="college_management_menu_1"
+              action="action_window_open_wiz"/>
+
+<!--    <menuitem name="Server to list"-->
+<!--              id="menu_server_to_list"-->
+<!--              action="college_management_action_window_2"/>-->
+
+    <menuitem name="Department Form" id="menu_3_view" parent="college_management_menu_3"
+              action="college_management_action_window_3"/>
+
+<!--    <menuitem nam="Student Form" id="menu_4_student" parent="college_management_menu_4"-->
+<!--              action="student_form_action_window"/>-->
+</odoo>

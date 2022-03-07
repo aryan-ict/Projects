@@ -1,0 +1,44 @@
+<odoo>
+    <record model="ir.ui.view" id="form_wiard">
+        <field name="name">college_management list</field>
+        <field name="model">college.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="name" options="{'no_create_edit':'True'}"/>
+                        <field name="mobile"/>
+                        <field name="address"/>
+                    </group>
+                    <group>
+                        <field name="country" placeholder="Select Your Country" widget="selection"/>
+                        <field name="course" required="True" placeholder="Select Course Type"/>
+                        <field name="upload"/>
+                        <field name="interests" placeholder="Select Your Interests"
+                           options="{'color_field': 'color'}"/>
+                    </group>
+                    <group>
+                        <field name="signature" widget="signature"/>
+                    </group>
+                    <group>
+                        <field name="image" widget="image"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="submit_button" type="object" string="Submit" class="btn-primary"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- actions opening on views model -->
+    <record model="ir.actions.act_window" id="action_window_open_wiz">
+        <field name="name">Wizard window</field>
+        <field name="res_model">college.wizard</field>
+        <field name="view_id" ref="form_wiard"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
