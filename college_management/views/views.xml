@@ -8,6 +8,7 @@
             <tree>
                 <field name="name"/>
                 <field name="mobile_no"/>
+                <field name="select_type"/>
                 <field name="description"/>
                 <!-- Status field which contains status = badge with decoration color
                      of with different keys assigned in status field -->
@@ -72,6 +73,8 @@
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="last_name"/>
+                        <field name="full_name"/>
                         <field name="mobile_no"/>
                         <field name="description"/>
                         <!-- Creating radio button using radio widget -->

@@ -1,0 +1,120 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="register_portal.list">
+      <field name="name">register_portal list</field>
+      <field name="model">register_portal.register_portal</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+          <field name="description"/>
+          <field name="age"/>
+          <field name="dob"/>
+          <field name="male"/>
+          <field name="female"/>
+          <field name="file_upload"/>
+          <field name="country"/>
+          <!--          <field name="city"/>-->
+          <field name="mobile"/>
+
+
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="register_portal.list_1">
+      <field name="name">register_portal list</field>
+      <field name="model">register_portal.register_portal</field>
+      <field name="arch" type="xml">
+        <tree>
+
+          <field name="name"/>
+          <field name="description"/>
+          <field name="age"/>
+          <field name="male"/>
+          <field name="female"/>
+
+        </tree>
+      </field>
+    </record>
+
+
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="register_portal.action_window">
+<!--      <field name="name">Members</field>-->
+      <field name="res_model">register_portal.register_portal</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="register_portal.list_1"/>
+    </record>
+
+    <record model="ir.actions.act_window" id="register_portal.action_window1">
+      <field name="name">Members</field>
+      <field name="res_model">register_portal.register_portal</field>
+      <field name="view_mode">kanban,form</field>
+
+    </record>
+
+    <record model="ir.actions.act_window" id="register_portal.action_window2">
+      <field name="name">Form</field>
+      <field name="res_model">register_portal.register_portal</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="register_portal.list"/>
+    </record>
+
+    <record model="ir.actions.act_window" id="register_portal.action_window3">
+      <field name="name">Records</field>
+      <field name="res_model">register_portal.register_portal</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <!-- <record model="ir.actions.server" id="register_portal.action_server">
+      <field name="name">Members</field>
+      <field name="model_id" ref="model_register_portal_register_portal"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+        "type": "ir.actions.act_window",
+        "view_mode": "tree,form",
+        "res_model": model._name,
+        }
+      </field>
+    </record> -->
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Registration Form" id="register_portal.menu_root" action="register_portal.action_window"/>
+
+
+    <!-- menu categories -->
+
+    <menuitem name="Members" id="register_portal.menu_1" parent="register_portal.menu_root"/>
+    <menuitem name="Registration Form" id="register_portal.menu_2" parent="register_portal.menu_root"/>
+    <menuitem name="Records" id="register_portal.menu_3" parent="register_portal.menu_root"/>
+
+
+    <!-- actions -->
+
+
+
+    <menuitem name="Members" id="register_portal.menu_1_list" parent="register_portal.menu_1"
+              action="register_portal.action_window1"/>
+    <!-- <menuitem name="Members" id="register_portal.menu_3_list" parent="register_portal.menu_1"
+              action="register_portal.action_server"/> -->
+
+    <menuitem name="Form" id="register_portal.menu_2_list" parent="register_portal.menu_2"
+              action="register_portal.action_window2"/>
+
+    <menuitem name="Records" id="register_portal.menu_3_list" parent="register_portal.menu_3"
+              action="register_portal.action_window3"/>
+
+
+  </data>
+</odoo>

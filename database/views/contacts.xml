@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res_partner_inherited</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <!--                <field name="mode">primary</field>-->
+        <field name="arch" type="xml">
+
+<!--            <field name="vat" position="before">-->
+<!--            </field>-->
+
+            <field name="vat" position="replace">
+                <field name="customer_reference" optional="hide" attrs="{'invisible': [('company_type', '=', 'company')]}"/>
+                <field name="birth_date" optional="show"/>
+            </field>
+
+            <xpath expr="//div[hasclass('o_address_format')]/field[@name='street2']" position="after">
+                <field name="street3" placeholder="Street 3..."/>
+            </xpath>
+
+<!--            <field name="phone" position="attributes">-->
+<!--                <attribute name="attrs">{'invisible': [('company_type', '=', 'company')]}</attribute>-->
+<!--            </field>-->
+            <xpath expr="//div[hasclass('o_address_format')]/field[@name='street3']" position="after">
+                <field name="description" placeholder="Description"/>
+            </xpath>
+
+            <xpath expr="//form//sheet//notebook//page[1]//field//kanban//field[@name='phone']" invisible="1"/>
+
+            <field name="website" position="after">
+                <field name="age" placeholder="Age"/>
+            </field>
+
+
+
+        </field>
+    </record>
+
+
+    <record id="view_partner_tree_inherit" model="ir.ui.view">
+        <field name="name">res_partner_inherited</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <field name="active" position="after">
+                <field name="customer_reference" optional="hide"/>
+                <field name="birth_date" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+
+</odoo>

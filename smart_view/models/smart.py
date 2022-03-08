@@ -20,7 +20,7 @@ class SmartView(models.Model):
     doc = fields.Datetime(string="Date Of Creation",
                           default=lambda self: fields.Datetime.now())
     rating = fields.Selection([('bad', 'Bad'), ('good', 'Good'), ('best', 'Best'),
-                               ('excellent', 'excellent')], string='Rate Us')
+                               ('excellent', 'Excellent')], string='Rate Us')
     gender = fields.Selection([('male', 'Male'), ('female', 'Female'),
                                ('transgender', 'Transgender')],
                               string="Gender", tracking=True)
@@ -31,9 +31,12 @@ class SmartView(models.Model):
                                   tracking=True)
     names_list = fields.Many2one('college.management',
                                  string="Name List")
-    first_page = fields.One2many('smart.view.otm', 'appointment_id',
-                                 string='Appointment Lines')
+    first_page_ids = fields.One2many('smart.view.otm', 'appointment_id',
+                                     string='Appointment Lines')
     checkbox = fields.Boolean(string='Confirmed', help='Tick the Checkbox')
+    rate_name = fields.Many2one('smart.view', string='Rated Names',
+                                help="Names with 3 star rating",
+                                domain=[('rating', '=', 'excellent')])
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', "Name is already in the database.")
@@ -105,6 +108,7 @@ class SmartViewOtm(models.Model):
     _name = "smart.view.otm"
     _description = "Smart View One2many"
     _rec_name = 'test_list'
+
     product_id = fields.Many2one('product.product', string='Product')
     product_qty = fields.Integer(string='Product Quantity')
     appointment_id = fields.Many2one('smart.view', string='Appointment ID')

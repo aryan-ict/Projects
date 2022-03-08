@@ -1,0 +1,88 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="database.list">
+      <field name="name">database list</field>
+      <field name="model">database.database</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+          <field name="description"/>
+          <field name="my_selection_field"/>
+          <field name="student_degree"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="database.action_window">
+      <field name="name">Menu1</field>
+      <field name="res_model">database.database</field>
+      <field name="view_mode">kanban,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="database.action_window1">
+      <field name="name">Menu3</field>
+      <field name="res_model">database.database</field>
+      <field name="view_mode">form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="database.action_window2">
+      <field name="name">Menu3</field>
+      <field name="res_model">database.database</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="database.action_server">
+      <field name="name">database1</field>
+      <field name="model_id" ref="model_database_database"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="database" id="database.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="database.menu_1" parent="database.menu_root"/>
+    <menuitem name="Menu 2" id="database.menu_2" parent="database.menu_root"/>
+    <menuitem name="Menu 3" id="database.menu_3" parent="database.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="List" id="database.menu_1_list" parent="database.menu_1"
+              action="database.action_window"/>
+    <menuitem name="List" id="database.menu_1_list" parent="database.menu_1"
+              action="database.action_server"/>
+    <menuitem name="List" id="database.menu_1_list" parent="database.menu_1"
+              action="database.action_window1"/>
+    <menuitem name="List" id="database.menu_1_list" parent="database.menu_1"
+              action="database.action_window2"/>
+
+
+
+
+  </data>
+</odoo>

@@ -6,6 +6,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
+                <field name="rating" widget="priority"/>
                 <field name="phone_no"/>
                 <field name="doc"/>
                 <field name="gender"/>
@@ -41,34 +42,30 @@
                                 class="oe_stat_button" icon="fa-external-link"/>
                     </div>
                     <group>
-                        <field name="write_uid"/>
-                        <field name="name"/>
-                        <field name="name1" readonly="True"/>
-                        <field name="email" widget="email"/>
-                        <field name="address"/>
-                        <field name="phone_no" widget="phone"/>
-                        <field name="doc" readonly="1"/>
-                        <field name="gender" widget="radio" options="{'horizontal':'True'}"/>
-                        <field name="names_list"/>
-                        <field name="checkbox"/>
-                        <field name="rating" widget="priority"/>
+                        <group>
+                            <field name="write_uid"/>
+                            <field name="name"/>
+                            <field name="name1" readonly="True"/>
+                            <field name="email" widget="email"/>
+                            <field name="address"/>
+                            <field name="rate_name"/>
+                        </group>
+                        <group>
+                            <field name="names_list"/>
+                            <field name="phone_no" widget="phone"/>
+                            <field name="doc" readonly="True"/>
+                            <field name="gender" widget="radio" options="{'horizontal':'True'}"/>
+                            <field name="checkbox"/>
+                            <field name="rating" widget="priority"/>
+                        </group>
                         <notebook>
                             <page string="First Page" name="first_page">
-                                <field name="first_page">
+                                <field name="first_page_ids">
                                     <tree editable="bottom">
                                         <field name="product_id"/>
                                         <field name="product_qty"/>
                                         <field name="appointment_id"/>
                                         <field name="test_list"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="Second Page" name="second_page">
-                                <field name="first_page">
-                                    <tree editable="bottom">
-                                        <field name="product_id"/>
-                                        <field name="product_qty"/>
-                                        <field name="appointment_id"/>
                                     </tree>
                                 </field>
                             </page>
@@ -84,16 +81,16 @@
         </field>
     </record>
 
-<!--    <record id="smart_view_filter" model="ir.ui.view">-->
-<!--        <field name="name">smart.view.search</field>-->
-<!--        <field name="model">smart.view</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <search string="Students">-->
-<!--                <field name="name"/>-->
-<!--                <field name="gender"/>-->
-<!--            </search>-->
-<!--        </field>-->
-<!--    </record>-->
+    <!--    <record id="smart_view_filter" model="ir.ui.view">-->
+    <!--        <field name="name">smart.view.search</field>-->
+    <!--        <field name="model">smart.view</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <search string="Students">-->
+    <!--                <field name="name"/>-->
+    <!--                <field name="gender"/>-->
+    <!--            </search>-->
+    <!--        </field>-->
+    <!--    </record>-->
 
     <!-- actions opening views on models -->
     <record model="ir.actions.act_window" id="smart_view_action_window">
