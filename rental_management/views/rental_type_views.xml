@@ -1,0 +1,51 @@
+<odoo>
+    <!-- List View for Rental type -->
+
+    <record model="ir.ui.view" id="rental_type_list">
+        <field name="name">view.tree.rental.type</field>
+        <field name="model">rental.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="type_name"/>
+                <field name="code"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+<!--     Form View for Rental Type -->
+
+    <record model="ir.ui.view" id="rental_type_form">
+        <field name="name">view.form.rental.type</field>
+        <field name="model">rental.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="type_name"/>
+                        <field name="code"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="rental_type_search" model="ir.ui.view">
+        <field name="name">rental.type.search</field>
+        <field name="model">rental.type</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="type_name"/>
+                <field name="code"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="rental_type_action_window">
+        <field name="name">Rental Type</field>
+        <field name="res_model">rental.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

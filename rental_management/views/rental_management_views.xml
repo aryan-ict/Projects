@@ -1,0 +1,105 @@
+<odoo>
+    <!-- List View for Main Menu Rental Management-->
+
+    <record model="ir.ui.view" id="rental_management_list">
+        <field name="name">view.tree.rental.management</field>
+        <field name="model">rental.management</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="rental_product"/>
+                <field name="price"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- List View on the click of Rental sub-menu -->
+
+    <record model="ir.ui.view" id="rental_list">
+        <field name="name">view.tree2.rental.management</field>
+        <field name="model">rental.management</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="rental_product"/>
+                <field name="price"/>
+                <field name="state"
+                       widget="badge"
+                       decoration-warning="state=='wait'"
+                       decoration-success="state=='approve'"
+                       decoration-danger="state=='cancel'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Rental Management -->
+
+    <record model="ir.ui.view" id="rental_management_form">
+        <field name="name">view.form.rental.management</field>
+        <field name="model">rental.management</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state"
+                           widget="statusbar"
+                           options="{'clickable':'True'}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="rental_type_id"/>
+                        </group>
+                        <group>
+                            <field name="start_date" widget="daterange"
+                                    options="{'related_end_date': 'end_date'}"/>
+                            <field name="end_date" widget="daterange"/>
+                            <field name="rental_product"/>
+                            <field name="price"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="rental_management_search" model="ir.ui.view">
+        <field name="name">rental.management.search</field>
+        <field name="model">rental.management</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="price"/>
+            </search>
+        </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="rental_management_action_window">
+        <field name="name">Rental Management</field>
+        <field name="res_model">rental.management</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="rental_action_window">
+        <field name="name">Rental Management</field>
+        <field name="res_model">rental.management</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="rental_list"/>
+
+    </record>
+</odoo>
