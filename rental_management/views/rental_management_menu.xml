@@ -14,10 +14,10 @@
               id="rental_menu"
               parent="rental_management_menu_1"
               sequence="1"
-              action="rental_management.rental_action_window"/>
+              action="rental_action_window"/>
     <menuitem name="Rental Type"
               id="rental_type_menu"
               parent="rental_management_menu_1"
               sequence="2"
-              action="rental_management.rental_type_action_window"/>
+              action="rental_type_action_window"/>
 </odoo>

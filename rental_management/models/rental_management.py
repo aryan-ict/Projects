@@ -8,7 +8,7 @@ class RentalManagement(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Model for Rent Management"
 
-    name = fields.Char(string="Name")
+    name = fields.Char(string="Name", required=True)
     partner_id = fields.Many2one('res.partner', string="Customer")
     rental_type_id = fields.Many2one('rental.type',string="Rental Type")
     start_date = fields.Datetime(string="Start Date")
@@ -18,3 +18,9 @@ class RentalManagement(models.Model):
     state = fields.Selection([('draft', 'Draft'), ('wait', 'Waiting'),
                               ('approve', 'Approve'), ('cancel', 'Cancel')],
                              default='draft', tracking=True)
+
+    @api.onchange('rental_type_id')
+    def onchange_rental_type_id(self):
+        for rec in self:
+            print("rec-----", rec.rental_type_id.id)
+            return {'domain': {'rental_product': [('rental_type_id', '=', rec.rental_type_id.id)]}}

@@ -82,6 +82,7 @@
             <search>
                 <field name="name"/>
                 <field name="price"/>
+                <filter name="yearly_filter" string="Yearly" context="{'group_by': 'rental_type_id'}"/>
             </search>
         </field>
     </record>
