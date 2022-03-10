@@ -15,8 +15,7 @@ class SmartView(models.Model):
     name1 = fields.Char(string="Name1")
     email = fields.Char(string="Email", help="Enter your Email ID")
     address = fields.Text(string='Address')
-    phone_no = fields.Char(string="Phone Number",
-                           related='names_list.mobile_no')
+    phone_no = fields.Char(string="Phone Number")
     doc = fields.Datetime(string="Date Of Creation",
                           default=lambda self: fields.Datetime.now())
     rating = fields.Selection([('bad', 'Bad'), ('good', 'Good'), ('best', 'Best'),
@@ -29,8 +28,8 @@ class SmartView(models.Model):
                                    ('approve', 'Approved')],
                                   default="apply",
                                   tracking=True)
-    names_list = fields.Many2one('college.management',
-                                 string="Name List")
+    # names_list = fields.Many2one('college.management',
+    #                              string="Name List")
     first_page_ids = fields.One2many('smart.view.otm', 'appointment_id',
                                      string='Appointment Lines')
     checkbox = fields.Boolean(string='Confirmed', help='Tick the Checkbox')

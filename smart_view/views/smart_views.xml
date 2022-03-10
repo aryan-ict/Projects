@@ -51,7 +51,7 @@
                             <field name="rate_name"/>
                         </group>
                         <group>
-                            <field name="names_list"/>
+<!--                            <field name="names_list"/>-->
                             <field name="phone_no" widget="phone"/>
                             <field name="doc" readonly="True"/>
                             <field name="gender" widget="radio" options="{'horizontal':'True'}"/>

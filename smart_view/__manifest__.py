@@ -18,13 +18,14 @@
     'depends': [
         'base',
         'mail',
-        'college_management',
+        'sale_management'
     ],
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/smart_views.xml',
-        'views/menu_views.xml'
+        'views/menu_views.xml',
+        'views/sale_order_views.xml'
     ],
     "license": "LGPL-3"
     # only loaded in demonstration mode
