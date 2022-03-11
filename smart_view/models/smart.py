@@ -22,20 +22,20 @@ class SmartView(models.Model):
                                ('excellent', 'Excellent')], string='Rate Us')
     gender = fields.Selection([('male', 'Male'), ('female', 'Female'),
                                ('transgender', 'Transgender')],
-                              string="Gender", tracking=True)
+                              string="Gender", tracking=True, default='male')
     status_bar = fields.Selection([('apply', 'Applied'),
                                    ('wait', 'Waiting'),
                                    ('approve', 'Approved')],
                                   default="apply",
                                   tracking=True)
-    # names_list = fields.Many2one('college.management',
-    #                              string="Name List")
+    names_list = fields.Many2one('college.management',
+                                 string="Name List")
     first_page_ids = fields.One2many('smart.view.otm', 'appointment_id',
                                      string='Appointment Lines')
     checkbox = fields.Boolean(string='Confirmed', help='Tick the Checkbox')
     rate_name = fields.Many2one('smart.view', string='Rated Names',
                                 help="Names with 3 star rating",
-                                domain=[('rating', '=', 'excellent')])
+                                domain=[('rating', '=', 'best')])
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', "Name is already in the database.")
@@ -83,10 +83,20 @@ class SmartView(models.Model):
         return res
 
     def search_button(self):
+        """Search Button function will get the name."""
         search_var = self.search([])
         print("search----", search_var)
         for rec in search_var:
             print("full_name...................", rec.name)
+
+    @api.model
+    def default_get(self, fields):
+        """Function for Default Get Method"""
+        res = super(SmartView, self).default_get(fields)
+        print("fields----\n", fields)
+        print("res----\n", res)
+        res['gender'] = 'female'
+        return res
 
 
 # @api.constrains('name')

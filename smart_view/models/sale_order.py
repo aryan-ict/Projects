@@ -10,6 +10,7 @@ class SaleOrder(models.Model):
 
     mobile = fields.Char(string="Mobile")
     email = fields.Char(string="Email")
+    customer_ref = fields.Char(string="Customer Reference")
 
     @api.onchange('partner_id')
     def onchange_partner_id(self):
@@ -24,4 +25,4 @@ class SaleOrder(models.Model):
         """Function to """
         for rec in self:
             if rec.payment_term_id not in rec.partner_id.property_payment_term_id:
-                raise UserError("Use same values")
+                raise UserError("Use same Payment Terms")

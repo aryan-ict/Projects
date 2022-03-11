@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 {
     'name': "Smart View",
     'summary': """
@@ -18,14 +19,18 @@
     'depends': [
         'base',
         'mail',
-        'sale_management'
+        'sale_management',
+        'contacts'
+        # 'college_management'
     ],
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'wizard/smart_wizard_views.xml',
         'views/smart_views.xml',
         'views/menu_views.xml',
-        'views/sale_order_views.xml'
+        'views/sale_order_views.xml',
+        'views/res_partner_views.xml'
     ],
     "license": "LGPL-3"
     # only loaded in demonstration mode

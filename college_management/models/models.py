@@ -1,5 +1,5 @@
 """This module is For Practice"""
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class CollegeManagement(models.Model):
@@ -7,7 +7,6 @@ class CollegeManagement(models.Model):
     _name = "college.management"
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Model for College Management"
-
 
     name = fields.Char(string='Name')
     last_name = fields.Char(string='Last Name')
@@ -59,5 +58,12 @@ class CollegeManagement(models.Model):
         res = []
         for rec in self:
             print("rec--------", rec)
-            res.append((rec.id, '%s %s' %(rec.name, rec.last_name)))
+            res.append((rec.id, '%s %s' % (rec.name, rec.last_name)))
         return res
+
+    # @api.model
+    # def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
+    #     if args is None:
+    #         args = []
+    #     domain = args + [('mobile_no', operator, name)]
+    #     return super(CollegeManagement, self).search(domain, limit=limit).name_get()

@@ -1,0 +1,29 @@
+<odoo>
+    <record model="ir.ui.view" id="smart_wizard_list">
+        <field name="name">tree.view.smart.wizard</field>
+        <field name="model">smart.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="email"/>
+                    </group>
+                    <group>
+                        <field name="sales_person" widget="many2one_avatar_user"/>
+                        <field name="sales_contact"/>
+                        <field name="payment_term_id"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_window_smart_wizard">
+        <field name="name">Smart Wizard Window</field>
+        <field name="res_model">smart.wizard</field>
+        <field name="view_id" ref="smart_wizard_list"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -11,27 +11,27 @@
 <!--            <field name="vat" position="before">-->
 <!--            </field>-->
 
-            <field name="vat" position="replace">
-                <field name="customer_reference" optional="hide" attrs="{'invisible': [('company_type', '=', 'company')]}"/>
-                <field name="birth_date" optional="show"/>
-            </field>
-
-            <xpath expr="//div[hasclass('o_address_format')]/field[@name='street2']" position="after">
-                <field name="street3" placeholder="Street 3..."/>
-            </xpath>
-
-<!--            <field name="phone" position="attributes">-->
-<!--                <attribute name="attrs">{'invisible': [('company_type', '=', 'company')]}</attribute>-->
+<!--            <field name="vat" position="replace">-->
+<!--                <field name="customer_reference" optional="hide" attrs="{'invisible': [('company_type', '=', 'company')]}"/>-->
+<!--                <field name="birth_date" optional="show"/>-->
 <!--            </field>-->
-            <xpath expr="//div[hasclass('o_address_format')]/field[@name='street3']" position="after">
-                <field name="description" placeholder="Description"/>
-            </xpath>
 
-            <xpath expr="//form//sheet//notebook//page[1]//field//kanban//field[@name='phone']" invisible="1"/>
+<!--            <xpath expr="//div[hasclass('o_address_format')]/field[@name='street2']" position="after">-->
+<!--                <field name="street3" placeholder="Street 3..."/>-->
+<!--            </xpath>-->
 
-            <field name="website" position="after">
-                <field name="age" placeholder="Age"/>
-            </field>
+<!--&lt;!&ndash;            <field name="phone" position="attributes">&ndash;&gt;-->
+<!--&lt;!&ndash;                <attribute name="attrs">{'invisible': [('company_type', '=', 'company')]}</attribute>&ndash;&gt;-->
+<!--&lt;!&ndash;            </field>&ndash;&gt;-->
+<!--            <xpath expr="//div[hasclass('o_address_format')]/field[@name='street3']" position="after">-->
+<!--                <field name="description" placeholder="Description"/>-->
+<!--            </xpath>-->
+
+<!--            <xpath expr="//form//sheet//notebook//page[1]//field//kanban//field[@name='phone']" invisible="1"/>-->
+
+<!--            <field name="website" position="after">-->
+<!--                <field name="age" placeholder="Age"/>-->
+<!--            </field>-->
 
 
 
