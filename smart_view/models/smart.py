@@ -28,8 +28,8 @@ class SmartView(models.Model):
                                    ('approve', 'Approved')],
                                   default="apply",
                                   tracking=True)
-    names_list = fields.Many2one('college.management',
-                                 string="Name List")
+    # names_list = fields.Many2one('college.management',
+    #                              string="Name List")
     first_page_ids = fields.One2many('smart.view.otm', 'appointment_id',
                                      string='Appointment Lines')
     checkbox = fields.Boolean(string='Confirmed', help='Tick the Checkbox')

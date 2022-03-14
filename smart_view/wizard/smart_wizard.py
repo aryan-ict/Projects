@@ -13,11 +13,20 @@ class SmartWizard(models.TransientModel):
     sales_contact = fields.Char(string="Sales Person Contact")
     payment_term_id = fields.Many2one('account.payment.term', string="Payment Terms")
 
-    # @api.model
-    # def default_get(self, fields):
-    #     """Function for Default Get Method"""
-    #     res = super(SmartWizard, self).default_get(fields)
-    #     print("fields----\n", fields)
-    #     print("res----\n", res)
-    #     res['email'] = res.email
-    #     return res
+    @api.model
+    def default_get(self, fields):
+        """Function for Default Get Method"""
+        res = super(SmartWizard, self).default_get(fields)
+        rec = self.env['sale.order'].browse(self.env.context.get('active_id'))
+        print("fields----\n", fields)
+        print("res----\n", res)
+        print("rec----\n", rec)
+
+        res.update({
+            'partner_id': rec.partner_id.id,
+            'email': rec.partner_id.email,
+            'sales_person': rec.user_id,
+            'sales_contact': rec.user_id.phone,
+            'payment_term_id': rec.payment_term_id
+        })
+        return res

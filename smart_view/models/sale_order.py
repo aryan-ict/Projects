@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
 
     mobile = fields.Char(string="Mobile")
     email = fields.Char(string="Email")
-    customer_ref = fields.Char(string="Customer Reference")
+    customer_ref = fields.Char(string="Customer Reference", related='partner_id.customer_ref')
 
     @api.onchange('partner_id')
     def onchange_partner_id(self):
@@ -20,9 +20,9 @@ class SaleOrder(models.Model):
                 rec.mobile = rec.partner_id.phone
                 rec.email = rec.partner_id.email
 
-    @api.constrains('payment_term_id')
-    def check_terms(self):
-        """Function to """
-        for rec in self:
-            if rec.payment_term_id not in rec.partner_id.property_payment_term_id:
-                raise UserError("Use same Payment Terms")
+    # @api.constrains('payment_term_id')
+    # def check_terms(self):
+    #     """Function to """
+    #     for rec in self:
+    #         if rec.payment_term_id not in rec.partner_id.property_payment_term_id:
+    #             raise UserError("Use same Payment Terms")

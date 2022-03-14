@@ -15,3 +15,11 @@ class ResPartner(models.Model):
             print("rec--------", rec)
             res.append((rec.id, '%s %s' % (rec.name, rec.customer_ref)))
         return res
+
+    @api.model
+    def _name_search(self, name, args=None, operator='ilike', limit=100):
+        args = args or []
+        domain = []
+        if name:
+            domain = ['|', '|', ('name', operator, name), ('phone', operator, name), ('email', operator, name)]
+        return self._search(domain + args, limit=limit)
