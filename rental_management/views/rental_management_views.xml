@@ -46,6 +46,15 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button type="object"
+                            string="button"
+                            name="get_data"/>
+                    <button type="object"
+                            string="Check Email"
+                            name="get_data_email"/>
+                    <button type="object"
+                            string="button"
+                            name="get_data_name"/>
                     <field name="state"
                            widget="statusbar"
                            options="{'clickable':'True'}"/>
