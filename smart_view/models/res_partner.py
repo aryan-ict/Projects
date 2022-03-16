@@ -9,7 +9,7 @@ class ResPartner(models.Model):
 
     customer_ref = fields.Char(string="Customer Reference")
     birth_date = fields.Date(string="Birth Date")
-    age = fields.Integer(string="Age")
+    age = fields.Integer(compute="_compute_calculate_age", string="Age")
 
     def name_get(self):
         """Function for getting the list of full names."""
@@ -30,9 +30,11 @@ class ResPartner(models.Model):
 
     @api.depends('birth_date')
     def _compute_calculate_age(self):
-        today_date = datetime.date.today()
+        """Function to calculate Age form Birth Date"""
+        # today_date = datetime.date.today()
         for rec in self:
             if rec.birth_date:
-                bdate = fields.Datetime.to_datetime(rec.birthdate).date()
-                rec.age = str(int((today_date - bdate).days / 365))
-                print("Date------------\n", bdate)
+                rec.age = int((datetime.date.today() - rec.birth_date).days / 365)
+            else:
+                rec.age = 0
+            # rec.age = today_date.year - rec.birth_date.year - ((today_date.month) < (rec.birth_date.month))

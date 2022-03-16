@@ -26,3 +26,11 @@ class SaleOrder(models.Model):
     #     for rec in self:
     #         if rec.payment_term_id not in rec.partner_id.property_payment_term_id:
     #             raise UserError("Use same Payment Terms")
+
+    def action_confirm(self):
+        """Function to override the Confirm Button in Sale Order."""
+        for rec in self:
+            if len(rec.order_line) > 3:
+                raise UserError("Can not add more than 3 orders at the moment.")
+            else:
+                return super(SaleOrder, self).action_confirm()
