@@ -19,9 +19,12 @@ class RentalManagement(models.Model):
     state = fields.Selection([('draft', 'Draft'), ('wait', 'Waiting'),
                               ('approve', 'Approve'), ('cancel', 'Cancel')],
                              default='draft', tracking=True)
+    rent_ids = fields.Many2many('rental.type', 'rent_m2m_table', 'rental_management_id',
+                                'rental_type_id', string="Rent")
 
     @api.onchange('rental_type_id')
     def onchange_rental_type_id(self):
+        """Function for Onchange Method."""
         for rec in self:
             print("rec-----", rec.rental_type_id.id)
             return {'domain': {'rental_product': [('rental_type_id', '=', rec.rental_type_id.id)]}}
@@ -37,6 +40,7 @@ class RentalManagement(models.Model):
         rec = self.env['res.partner'].search([]).read(['email'])
         for res in rec:
             print(res)
+
     # Output:
     # {'id': 14, 'email': 'azure.Interior24@example.com'}
     # {'id': 26, 'email': 'brandon.freeman55@example.com'}
@@ -84,6 +88,7 @@ class RentalManagement(models.Model):
         rec = self.env['res.partner'].search_read([('email', '!=', False)], ['email'])
         for res in rec:
             print(res)
+
     # Output:
     # {'id': 14, 'email': 'azure.Interior24@example.com'}
     # {'id': 26, 'email': 'brandon.freeman55@example.com'}

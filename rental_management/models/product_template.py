@@ -1,6 +1,6 @@
 """This model is for Inheritance in product.template model"""
 
-from odoo import models, fields, api
+from odoo import models, fields
 
 
 class ProductTemplateInherit(models.Model):
