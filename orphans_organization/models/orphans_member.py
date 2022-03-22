@@ -19,6 +19,7 @@ class orphans_member(models.Model):
     state = fields.Char()
     zip = fields.Char()
     country = fields.Char()
+    select = fields.Char()
 
     def s_button(self):
         pass

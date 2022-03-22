@@ -60,6 +60,15 @@
             <field name="age"/>
             <field name="g_name"/>
             <field name="o_organization"/>
+            <button name="s_button"
+                    type="object"
+                    string="Approve"
+                    class="btn-primary"/>
+
+            <button name="s_button"
+                    type="object"
+                    string="Cancel"
+                    class="btn-primary"/>
         </tree>
       </field>
     </record>
