@@ -30,7 +30,8 @@
         'views/smart_views.xml',
         'views/menu_views.xml',
         'views/sale_order_views.xml',
-        'views/res_partner_views.xml'
+        'views/res_partner_views.xml',
+        'views/res_config_views.xml'
     ],
     "license": "LGPL-3"
     # only loaded in demonstration mode

@@ -34,8 +34,8 @@ class SmartView(models.Model):
                                      string='Appointment Lines')
     checkbox = fields.Boolean(string='Confirmed', help='Tick the Checkbox')
     rate_name = fields.Many2one('smart.view', string='Rated Names',
-                                help="Names with 3 star rating",
-                                domain=[('rating', '=', 'best')])
+                                help="Names with 2 and more than 2 star rating",
+                                domain=[('rating', '>=', 'best')])
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', "Name is already in the database.")
@@ -99,17 +99,22 @@ class SmartView(models.Model):
         return res
 
 
-# @api.constrains('name')
-# def check_name(self):
-#     for rec in self:
-#         if rec.name.isalpha() == False:
-#             raise ValidationError("Name must contain only alphabets")
+    # @api.constrains('name')
+    # def check_name(self):
+    #     """Function to raise validation error on name field,
+    #     If name contains any numeric value it will raise error."""
+    #     for rec in self:
+    #         if rec.name.isalpha() == False:
+    #             raise ValidationError("Name must contain only alphabets")
 
-# @api.constrains('phone_no')
-# def check_number(self):
-#     for record in self:
-#         if len(record.phone_no) > 10 or len(record.phone_no) < 10:
-#             raise ValidationError("The number must be 10 digits long")
+
+    # @api.constrains('phone_no')
+    # def check_number(self):
+    #     """Function to raise validation error on phone field,
+    #     If the length of phone number < or > 10 is will raise error."""
+    #     for record in self:
+    #         if len(record.phone_no) == 10:
+    #             raise ValidationError("The number must be 10 digits long")
 
 
 class SmartViewOtm(models.Model):

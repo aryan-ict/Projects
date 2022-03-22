@@ -25,8 +25,8 @@ class SmartWizard(models.TransientModel):
         res.update({
             'partner_id': rec.partner_id.id,
             'email': rec.partner_id.email,
-            'sales_person': rec.user_id,
+            'sales_person': rec.user_id.id,
             'sales_contact': rec.user_id.phone,
-            'payment_term_id': rec.payment_term_id
+            'payment_term_id': rec.payment_term_id.id
         })
         return res

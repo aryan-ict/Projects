@@ -31,10 +31,11 @@ class ResPartner(models.Model):
     @api.depends('birth_date')
     def _compute_calculate_age(self):
         """Function to calculate Age form Birth Date"""
-        # today_date = datetime.date.today()
+        today_date = datetime.date.today()
         for rec in self:
             if rec.birth_date:
-                rec.age = int((datetime.date.today() - rec.birth_date).days / 365)
+                rec.age = today_date.year - rec.birth_date.year - (
+                            (today_date.month, today_date.day) < (rec.birth_date.month, rec.birth_date.day))
             else:
                 rec.age = 0
-            # rec.age = today_date.year - rec.birth_date.year - ((today_date.month) < (rec.birth_date.month))
+            # rec.age = int((datetime.date.today() - rec.birth_date).days / 365)
