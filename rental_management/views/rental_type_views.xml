@@ -20,6 +20,12 @@
         <field name="model">rental.type</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="%(rental_wizard_action_window)d"
+                            type="action"
+                            string="Rental Wizard"
+                            class="btn-primary"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="type_name"/>

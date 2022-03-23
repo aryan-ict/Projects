@@ -10,6 +10,6 @@ class RentalType(models.Model):
     _description = "Model for sub menu Rental Type"
     _rec_name = "type_name"
 
-    type_name = fields.Char(string="Name", tracking=True, required=True)
+    type_name = fields.Char(string="Name", tracking=True, required=False)
     code = fields.Char(string="Code")
     description = fields.Text(string="Description")

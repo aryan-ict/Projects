@@ -22,6 +22,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'wizard/rental_wizard_views.xml',
         'views/rental_type_views.xml',
         'views/rental_management_views.xml',
         'views/rental_management_menu.xml',

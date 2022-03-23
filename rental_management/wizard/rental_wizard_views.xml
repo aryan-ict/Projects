@@ -1,0 +1,34 @@
+<odoo>
+    <record model="ir.ui.view" id="rental_wizard_form">
+        <field name="name">wizard</field>
+        <field name="model">rental.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="create_wizard"
+                            type="object"
+                            string="Create"/>
+                    <button name="write_wizard"
+                            type="object"
+                            string="Update"
+                            class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="type_name"/>
+                        <field name="code"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="rental_wizard_action_window">
+        <field name="name">Rental Wizard</field>
+        <field name="res_model">rental.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="rental_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>
