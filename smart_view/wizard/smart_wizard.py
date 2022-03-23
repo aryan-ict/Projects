@@ -7,7 +7,7 @@ class SmartWizard(models.TransientModel):
     _name = "smart.wizard"
     _description = "Model for Wizard"
 
-    partner_id = fields.Many2one('res.partner', string="Customer")
+    customer_id = fields.Many2one('res.partner', string="Customer")
     email = fields.Char(string="Email")
     sales_person = fields.Many2one('res.users', string="Salesperson")
     sales_contact = fields.Char(string="Sales Person Contact")
@@ -23,10 +23,22 @@ class SmartWizard(models.TransientModel):
         print("rec----\n", rec)
 
         res.update({
-            'partner_id': rec.partner_id.id,
+            'customer_id': rec.partner_id.id,
             'email': rec.partner_id.email,
             'sales_person': rec.user_id.id,
             'sales_contact': rec.user_id.phone,
             'payment_term_id': rec.payment_term_id.id
         })
         return res
+
+    def create_wizard2(self):
+        context = self._context
+        rental_type = self.env[context["active_model"]].browse(context["active_id"])
+        rental_type.write({
+            'partner_id': self.partner_id,
+            'email': self.email,
+            'sales_person': self.sales_person,
+            'sales_contact': self.sales_contact,
+            'payment_term_id': self.payment_term_id
+        })
+        # print("========================>", res)

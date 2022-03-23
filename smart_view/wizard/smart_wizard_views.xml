@@ -4,9 +4,15 @@
         <field name="model">smart.wizard</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="create_wizard2"
+                            type="object"
+                            string="Update"
+                            class="btn-primary"/>
+                </header>
                 <group>
                     <group>
-                        <field name="partner_id"/>
+                        <field name="customer_id"  context="{'cus_country':'country'}"/>
                         <field name="email"/>
                     </group>
                     <group>

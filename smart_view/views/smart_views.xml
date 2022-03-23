@@ -81,16 +81,16 @@
         </field>
     </record>
 
-        <record id="smart_view_filter" model="ir.ui.view">
-            <field name="name">smart.view.search</field>
-            <field name="model">smart.view</field>
-            <field name="arch" type="xml">
-                <search string="Students">
-                    <field name="name"/>
-                    <field name="gender"/>
-                </search>
-            </field>
-        </record>
+    <record id="smart_view_filter" model="ir.ui.view">
+        <field name="name">smart.view.search</field>
+        <field name="model">smart.view</field>
+        <field name="arch" type="xml">
+            <search string="Students">
+                <field name="name"/>
+                <field name="gender"/>
+            </search>
+        </field>
+    </record>
 
     <!-- actions opening views on models -->
     <record model="ir.actions.act_window" id="smart_view_action_window">
