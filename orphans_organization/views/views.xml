@@ -83,6 +83,16 @@
             </field>
         </record>
 
+        <record id="res_partner_search_view" model="ir.ui.view">
+            <field name="name">res.partner.search</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <search string="Students">
+                    <filter name="filter_ngo" string="NGO" domain="[('ngo_check','=','True')]"/>
+                </search>
+            </field>
+        </record>
+
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="orphans_organization_action_window">
@@ -95,7 +105,7 @@
             <field name="name">res_partner_kanban window</field>
             <field name="res_model">res.partner</field>
             <field name="view_mode">kanban,form,search</field>
-            <field name="context">{'search_default_ngo_check': True}</field>
+            <field name="context">{'search_default_filter_ngo': True}</field>
 
         </record>
 
