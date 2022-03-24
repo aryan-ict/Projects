@@ -26,7 +26,10 @@
         'views/rental_type_views.xml',
         'views/rental_management_views.xml',
         'views/rental_management_menu.xml',
-        'views/product_template_views.xml'
+        'views/product_template_views.xml',
+        'reports/rental_paper_format.xml',
+        'reports/template.xml',
+        'reports/rental_management_report.xml'
     ],
     "license": "LGPL-3"
     # only loaded in demonstration mode
