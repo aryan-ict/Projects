@@ -88,7 +88,7 @@
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
                 <search string="Students">
-                    <filter name="filter_ngo" string="NGO" domain="[('ngo_check','=','True')]"/>
+                    <filter name="filter_ngo" string="NGO" domain="[('ngo_check','=',True)]"/>
                 </search>
             </field>
         </record>

@@ -50,8 +50,8 @@
     </record>
 
 
-    <record model="ir.ui.view" id="orphans_member_form">
-      <field name="name">Orphans Member form</field>
+    <record model="ir.ui.view" id="orphans_member_tree">
+      <field name="name">Orphans Member Tree</field>
       <field name="model">orphans.member</field>
       <field name="arch" type="xml">
         <tree>
