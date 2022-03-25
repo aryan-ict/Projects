@@ -1,22 +1,12 @@
 <odoo>
     <data>
         <!-- explicit list view orphans definition -->
-
         <record model="ir.ui.view" id="organization_form">
             <field name="name">Organization form</field>
             <field name="model">orphans.organization</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-                        <div class="oe_button_box" name="button_box">
-                            <button string="Orphan Members" type="action"
-                                    name="%(orphans_member_action_window)d" class="oe_stat_button"
-                                    icon="fa-external-link"/>
-                            <button string="Available Funds" type="action"
-                                    name="%(orphans_donation_action_window)d"
-                                    class="oe_stat_button" icon="fa-external-link"/>
-                        </div>
-
                         <div>
                             <field name="name" placeholder="Orphans Organization Name" widget="text"
                                    style="width:75%; font-size:25px"/>
@@ -25,6 +15,7 @@
                         <group>
 
                             <group>
+                                <field name="ngo_id" placeholder="Select NGO"/>
                                 <field name="s1" placeholder="Street 1"/>
                                 <field name="s2" string="" placeholder="Street 2"/>
 
@@ -41,9 +32,6 @@
                             </group>
 
                             <group>
-                                <!--                                <field name="total_member_orphan"/>-->
-                                <!--                                <field name="available_fund"/>-->
-
                                 <field name="total_capacity"/>
                                 <field name="foundation_years"/>
                             </group>
@@ -60,8 +48,6 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
-                    <!--                    <field name="total_member_orphan"/>-->
-                    <!--                    <field name="available_fund"/>-->
                     <field name="total_capacity"/>
                     <field name="foundation_years"/>
                 </tree>
@@ -94,7 +80,6 @@
         </record>
 
         <!-- actions opening views on models -->
-
         <record model="ir.actions.act_window" id="orphans_organization_action_window">
             <field name="name">orphans_organization window</field>
             <field name="res_model">orphans.organization</field>
@@ -106,24 +91,12 @@
             <field name="res_model">res.partner</field>
             <field name="view_mode">kanban,form,search</field>
             <field name="context">{'search_default_filter_ngo': True}</field>
-
         </record>
 
-        <!--        <record id="res.partner_search_actions" model="ir.actions.act_window">-->
-        <!--            <field name="name">Default Filter</field>-->
-        <!--            <field name="res_model">res.partner</field>-->
-        <!--            <field name="view_mode">tree,kanban,form</field>-->
-        <!--            <field name="context">{'search_default_ngo_check': True}</field>-->
-        <!--        </record>-->
-
-
         <!-- Top menu item -->
-
         <menuitem name="NGO" id="orphans_organization_menu_root" action="res_partner_kanban_action_window"/>
 
         <!-- menu categories -->
-
-
         <menuitem name="Orphans Organization" id="orphans_organization_menu" parent="orphans_organization_menu_root"
                   action="orphans_organization_action_window"/>
 

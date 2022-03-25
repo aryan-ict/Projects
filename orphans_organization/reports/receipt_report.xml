@@ -1,0 +1,13 @@
+<odoo>
+    <!-- Action for Report -->
+    <record id="doner_receipt_report" model="ir.actions.report">
+        <field name="name">Download Receipt</field>
+        <field name="model">orphans.organization.donation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">orphans_organization.doner_receipt_main_template</field>
+        <field name="report_file">orphans_organization.doner_receipt_main_template</field>
+        <field name="binding_model_id" ref="model_orphans_organization_donation"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="orphans_doner_paperformat"/>
+    </record>
+</odoo>

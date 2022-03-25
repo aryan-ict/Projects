@@ -16,6 +16,7 @@ class orphans_organization(models.Model):
     state = fields.Char()
     zip = fields.Char()
     country = fields.Char()
+    ngo_id = fields.Many2one('res.partner', string="NGO", domain=[('ngo_check', '=', True)])
 
     # total_member_orphan = fields.Integer(string="Total Orphan Members")
     # available_fund = fields.Integer(string="Available Funds")
@@ -33,5 +34,16 @@ class orphans_organization(models.Model):
 
     def s2_button(self):
         pass
+
+    def name_get(self):
+        """Function To Concatenate Name, NGO, State fields."""
+        res = []
+        for rec in self:
+            if rec.state:
+                res.append((rec.id, '%s (%s, %s)' % (rec.name, rec.ngo_id.name, rec.state)))
+            else:
+                res.append((rec.id, '%s (%s)' % (rec.name, rec.nago_id.name)))
+        return res
+
 
 

@@ -32,6 +32,9 @@
         'views/o_donation.xml',
         'views/orphans_expense.xml',
         'views/orphans_advertise.xml',
+        'reports/doner_paper_format.xml',
+        'reports/template.xml',
+        'reports/receipt_report.xml'
 
     ],
     # only loaded in demonstration mode
