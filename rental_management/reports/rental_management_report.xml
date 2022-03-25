@@ -1,4 +1,5 @@
 <odoo>
+    <!-- Action for the Report -->`
     <record id="rental_management_report" model="ir.actions.report">
         <field name="name">Rental Management Report</field>
         <field name="model">rental.management</field>

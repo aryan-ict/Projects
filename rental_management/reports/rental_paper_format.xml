@@ -1,5 +1,7 @@
 <odoo>
     <data>
+
+        <!-- Paper Format For Rental Management Report -->
         <record id="rental_management_paperformat" model="report.paperformat">
             <field name="name">Custom Paper Format</field>
             <field name="default" eval="True"/>
