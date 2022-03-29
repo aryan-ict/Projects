@@ -10,6 +10,7 @@ class ResPartner(models.Model):
     customer_ref = fields.Char(string="Customer Reference")
     birth_date = fields.Date(string="Birth Date")
     age = fields.Integer(string="Age", compute="_compute_calculate_age")
+    customer_rank = fields.Integer(string="Customer Rank")
 
     def name_get(self):
         """Function for getting the list of full names."""
@@ -47,3 +48,13 @@ class ResPartner(models.Model):
             else:
                 rec.age = 0
         # rec.age = int((datetime.date.today() - rec.birth_date).days / 365)
+
+    @api.onchange('customer_rank')
+    def onchange_customer_rank(self):
+        """Function to get 'Best Customer' tag when customer rank > 5"""
+        for rec in self:
+            ids = [19]
+            if rec.customer_rank > 5:
+                self.write({'category_id': [(6, 0, ids)]})
+            else:
+                self.write({'category_id': [(6, 0, [1, 2, 3, 4])]})

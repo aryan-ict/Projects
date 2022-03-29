@@ -1,0 +1,27 @@
+<odoo>
+    <record model="ir.ui.view" id="special_operator_wizard_form">
+        <field name="name">tree.view.special.operator</field>
+        <field name="model">special.operator.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="create_order_line"
+                            string="Create Products"
+                            type="object"
+                            class="btn-primary"/>
+                </header>
+                <group>
+                    <field name="product_ids"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_window_special_operator">
+        <field name="name">Special Operator Window</field>
+        <field name="res_model">special.operator.wizard</field>
+        <field name="view_id" ref="special_operator_wizard_form"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

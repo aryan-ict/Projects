@@ -11,6 +11,7 @@ class SaleOrder(models.Model):
     mobile = fields.Char(string="Mobile")
     email = fields.Char(string="Email")
     customer_ref = fields.Char(string="Customer Reference", related='partner_id.customer_ref')
+    customer_rank = fields.Integer(string="Customer Rank", related='partner_id.customer_rank''')
 
     @api.onchange('partner_id')
     def onchange_partner_id(self):
@@ -34,3 +35,12 @@ class SaleOrder(models.Model):
                 raise UserError("Can not add more than 3 orders at the moment.")
             else:
                 return super(SaleOrder, self).action_confirm()
+
+    @api.onchange('customer_rank')
+    def onchange_customer_rank(self):
+        """Function To get 'Best Customer' when customer rank > 5"""
+        for rec in self:
+            if rec.customer_rank > 5:
+                self.write({'tag_ids': [(6, 0, [9])]})
+            else:
+                self.write({'tag_ids': [(6, 0, [1, 2, 3, 4, 10])]})

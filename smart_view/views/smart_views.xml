@@ -32,6 +32,14 @@
                             type="object"
                             string="Search"
                             class="btn-primary"/>
+                    <button name="specialOperator"
+                            type="object"
+                            string="Special Operator(0,0)"
+                            class="btn-primary"/>
+                     <button name="specialOperator_2"
+                            type="object"
+                            string="Special Operator(1,ID)"
+                            class="btn-primary"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">

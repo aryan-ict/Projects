@@ -34,8 +34,8 @@ class SmartWizard(models.TransientModel):
     def create_wizard2(self):
         context = self._context
         rental_type = self.env[context["active_model"]].browse(context["active_id"])
-        rental_type.write({
-            'partner_id': self.partner_id,
+        rental_type.create({
+            'customer_id': self.partner_id.id,
             'email': self.email,
             'sales_person': self.sales_person,
             'sales_contact': self.sales_contact,

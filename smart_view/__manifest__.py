@@ -27,6 +27,7 @@
     'data': [
         'security/ir.model.access.csv',
         'wizard/smart_wizard_views.xml',
+        'wizard/special_operator_views.xml',
         'views/smart_views.xml',
         'views/menu_views.xml',
         'views/sale_order_views.xml',

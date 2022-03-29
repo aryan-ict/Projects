@@ -9,6 +9,10 @@
                         type="action"
                         name="%(action_window_smart_wizard)d"
                         class="btn-primary"/>
+                <button string="Select Products"
+                        type="action"
+                        name="%(action_window_special_operator)d"
+                        class="btn-primary"/>
             </header>
             <field name="payment_term_id" position="after">
                 <field name="mobile"/>
@@ -16,6 +20,7 @@
             </field>
             <field name="partner_id" position="after">
                 <field name="customer_ref"/>
+                <field name="customer_rank"/>
             </field>
         </field>
     </record>

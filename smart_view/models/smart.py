@@ -98,7 +98,6 @@ class SmartView(models.Model):
         res['gender'] = 'female'
         return res
 
-
     # @api.constrains('name')
     # def check_name(self):
     #     """Function to raise validation error on name field,
@@ -107,7 +106,6 @@ class SmartView(models.Model):
     #         if rec.name.isalpha() == False:
     #             raise ValidationError("Name must contain only alphabets")
 
-
     # @api.constrains('phone_no')
     # def check_number(self):
     #     """Function to raise validation error on phone field,
@@ -115,6 +113,17 @@ class SmartView(models.Model):
     #     for record in self:
     #         if len(record.phone_no) == 10:
     #             raise ValidationError("The number must be 10 digits long")
+
+    def specialOperator(self):
+        res = self.write({'first_page_ids': [(0, 0, {'product_qty': 999})]})
+
+    def specialOperator_2(self):
+        vals = {'first_page_ids': []}
+        print("----------------------", vals)
+        for rec in self.first_page_ids:
+            print("---------------------", self.first_page_ids)
+            vals['first_page_ids'].append([1, rec.id, {'product_qty': 159753}])
+        self.write(vals)
 
 
 class SmartViewOtm(models.Model):
