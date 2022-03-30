@@ -6,7 +6,7 @@ class SpecialOperatorWizard(models.TransientModel):
     """This class is for fields and function."""
     _name = "special.operator.wizard"
 
-    product_ids = fields.Many2many('sale.order.line', string="Products")
+    product_ids = fields.Many2many('product.product', string="Products")
 
     def create_order_line(self):
         """Function to get order lines on the
