@@ -17,12 +17,16 @@
     'version': '0.1',
     # any module necessary for this one to work correctly
     'depends': [
-        'base'
+        'base',
+        'contacts',
+        'sale_management'
     ],
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/advance_action_views.xml'
+        'data/sale_order_cron.xml',
+        'views/advance_action_views.xml',
+        'views/res_partner_views.xml'
 
     ],
     "license": "LGPL-3"

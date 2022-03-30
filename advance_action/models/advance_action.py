@@ -13,6 +13,6 @@ class AdvanceAction(models.Model):
 
     def server_action(self):
         vals = {'name': "Parth",
-                'phone': '1123456789',
-                'email': 'xyz@gmail.com'}
-        self.write(vals)
+                'last_name': '1123456789',
+                }
+        self.create(vals)

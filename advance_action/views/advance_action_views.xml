@@ -16,19 +16,15 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Server Action -->
-<!--     <record id="demo_server_action" model="ir.actions.server" >-->
-<!--            <field name="name">Demo Server Action</field>-->
-<!--            <field name="model_id" ref="model_advance_action"/>-->
-<!--            <field name="binding_model_id" ref="advance_action.model_advance_action"/>-->
-<!--            <field name="state">code</field>-->
-<!--            <field name="code">-->
-<!--   vals = {'name': "Parth",-->
-<!--                'phone': '1123456789',-->
-<!--                'email': 'xyz@gmail.com'}-->
-<!--        self.write(vals)-->
-<!--            </field>-->
-<!--        </record>-->
+    <!--     Server Action -->
+    <record id="demo_server_action" model="ir.actions.server">
+        <field name="name">Test Server Action</field>
+        <field name="model_id" ref="model_advance_action"/>
+        <field name="binding_model_id" ref="advance_action.model_advance_action"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">records.server_action()</field>
+    </record>
 
     <menuitem name="Advance Action"
               id="advance_action_menu_root"/>
