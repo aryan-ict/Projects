@@ -26,6 +26,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'data/category_id.xml',
         'wizard/smart_wizard_views.xml',
         'wizard/special_operator_views.xml',
         'views/smart_views.xml',

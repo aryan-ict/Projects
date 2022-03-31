@@ -22,8 +22,6 @@ class ResPartner(models.Model):
                     res.append((rec.id, '%s %s' % (rec.name, rec.customer_ref)))
                 else:
                     res.append((rec.id, '%s %s' % (rec.name, rec.parent_id.name)))
-            elif rec.parent_id.name:
-                res.append((rec.id, '%s %s' % (rec.name, rec.parent_id.name)))
             else:
                 res.append((rec.id, '%s' % rec.name))
         return res
@@ -53,8 +51,6 @@ class ResPartner(models.Model):
     def onchange_customer_rank(self):
         """Function to get 'Best Customer' tag when customer rank > 5"""
         for rec in self:
-            ids = [19]
             if rec.customer_rank > 5:
-                self.write({'category_id': [(6, 0, ids)]})
-            else:
-                self.write({'category_id': [(6, 0, [1, 2, 3, 4])]})
+                best_customer = self.env.ref("smart_view.category_best_customer").id
+                self.write({'category_id': [(4, best_customer)]})
