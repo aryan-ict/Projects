@@ -26,7 +26,8 @@
         'security/ir.model.access.csv',
         'data/sale_order_cron.xml',
         'views/advance_action_views.xml',
-        'views/res_partner_views.xml'
+        'views/res_partner_views.xml',
+        'controllers/contacts_list.xml'
 
     ],
     "license": "LGPL-3"

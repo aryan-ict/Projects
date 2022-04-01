@@ -8,6 +8,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     def change_state(self):
+        print("-----------------Hello")
         self.search([]).write({'state': 'sent'})
         # print("----------------------Hello World")
         # lst = []
