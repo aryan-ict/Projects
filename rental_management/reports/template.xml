@@ -35,7 +35,7 @@
                     <li>Status:
                         <span t-field="o.state"/>
                     </li>
-                    <table width="50%" style="border:1px solid black;border-collapse:collapse">
+                    <table width="100%" style="border:1px solid black;border-collapse:collapse">
                         <tr>
                             <th>Name</th>
                             <th>Rental Type</th>
@@ -45,15 +45,33 @@
                             <th>Price</th>
                             <th>Status</th>
                         </tr>
-                        <tr>
-                            <td><span t-field="o.name"/></td>
-                            <td><span t-field="o.rental_type_id"/></td>
-                            <td><span t-field="o.rental_product"/></td>
-                            <td><span t-field="o.start_date"/></td>
-                            <td><span t-field="o.end_date"/></td>
-                            <td><span t-field="o.price"/></td>
-                            <td><span t-field="o.state"/></td>
-                        </tr>
+
+                        <t t-foreach="docs" t-as="a">
+                            <tr>
+                                <td>
+                                    <span t-field="a.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="a.rental_type_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="a.rental_product"/>
+                                </td>
+                                <td>
+                                    <span t-field="a.start_date"/>
+                                </td>
+                                <td>
+                                    <span t-field="a.end_date"/>
+                                </td>
+                                <td>
+                                    <span t-field="a.price"/>
+                                </td>
+                                <td>
+                                    <span t-field="a.state"/>
+                                </td>
+                            </tr>
+                        </t>
+
                     </table>
                 </ul>
             </div>
@@ -63,10 +81,10 @@
     <!-- Main-Template -->
     <template id="rental_management.rental_main_template">
         <t t-call="web.html_container">
-                <t t-foreach="docs" t-as="doc">
-                    <t t-call="rental_management.rental_template"/>
-                </t>
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="rental_management.rental_template"/>
             </t>
+        </t>
     </template>
 
 </odoo>

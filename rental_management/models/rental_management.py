@@ -19,8 +19,8 @@ class RentalManagement(models.Model):
     state = fields.Selection([('draft', 'Draft'), ('wait', 'Waiting'),
                               ('approve', 'Approve'), ('cancel', 'Cancel')],
                              default='draft', tracking=True)
-    # rent_ids = fields.Many2many('rental.type', 'rent_m2m_table', 'rental_management_id',
-    #                             'rental_type_id', string="Rent")
+    rent_ids = fields.Many2many('rental.type', 'rent_m2m_table', 'rental_management_id',
+                                'rental_type_id', string="Rent")
 
     @api.onchange('rental_type_id')
     def onchange_rental_type_id(self):

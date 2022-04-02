@@ -1,6 +1,6 @@
 <odoo>
     <!-- Action for Report -->
-    <record id="doner_receipt_report" model="ir.actions.report">
+    <record id="doner_receipt_report2" model="ir.actions.report">
         <field name="name">Download Receipt</field>
         <field name="model">orphans.organization.donation</field>
         <field name="report_type">qweb-pdf</field>

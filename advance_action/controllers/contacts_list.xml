@@ -2,8 +2,97 @@
 <odoo>
     <template id="contacts_list" name="Contacts List">
         <t t-call="website.layout">
-            <h1>Hello This is test Website.</h1>
+            <div class="oe_structure">
+                <div class="container">
+                    <br/>
+                    <center>
+                        <h2>Contacts List</h2>
+                    </center>
+                    <br/>
+                    <center>
+                        <table width="100%" class="table-striped table-bordered table-">
+                            <thead style="font-size:23px;">
+                                <tr>
+                                    <h6>
+                                        <b>
+                                            <th>name</th>
+                                            <th>Job Position</th>
+                                            <th>Phone No.</th>
+                                            <th>Email</th>
+                                            <th>Country</th>
+                                            <th>External link</th>
+                                        </b>
+                                    </h6>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="contacts_list" t-as="rec">
+                                    <tr>
+                                        <td>
+                                            <span t-esc="rec.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="rec.function"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="rec.phone"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="rec.email"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="rec.country_id.name"/>
+                                        </td>
+                                        <td>
+                                            <a t-attf-href="/contacts/details/{{slug(rec)}}">
+                                               Details
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </center>
+                </div>
+            </div>
         </t>
-<!--        <h1>Hello</h1>-->
+    </template>
+
+    <template id="contacts_detail" name="Contact Detail">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <center>
+                        <h2>Contacts Details</h2>
+                    </center>
+                    <br/>
+                    <table width="100%" class="table-striped table">
+                        <thead style="font-size:23px;">
+                            <tr>
+                                <h6>
+                                    <b>
+                                        <th>Phone No.</th>
+                                        <th>Email</th>
+                                        <th>Country</th>
+                                    </b>
+                                </h6>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <td>
+                                <span t-esc="details.phone"/>
+                            </td>
+                            <td>
+                                <span t-esc="details.email"/>
+                            </td>
+                            <td>
+                                <span t-esc="details.country_id.name"/>
+                            </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
     </template>
 </odoo>
