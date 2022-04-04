@@ -12,7 +12,7 @@
                 </header>
                 <group>
                     <group>
-                        <field name="customer_id"  context="{'cus_country':'country'}"/>
+                        <field name="customer_id" context="{'cus_country':'country'}"/>
                         <field name="email"/>
                     </group>
                     <group>

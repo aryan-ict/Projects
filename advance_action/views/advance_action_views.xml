@@ -10,6 +10,25 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="advance_action_form">
+        <field name="name">form.view.advance.action</field>
+        <field name="model">advance.action</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="%(action_window_timesheet_wizard)d"
+                            type="action"
+                            string="Wizard Button"
+                            class="btn-primary"/>
+                </header>
+                <sheet>
+                    <field name="name"/>
+                    <field name="last_name"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="action_window_advance_action">
         <field name="name">Advance Action Window</field>
         <field name="res_model">advance.action</field>

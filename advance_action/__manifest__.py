@@ -19,15 +19,18 @@
     'depends': [
         'base',
         'contacts',
-        'sale_management'
+        'sale_management',
+        'hr'
     ],
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'data/sale_order_cron.xml',
+        'wizard/timesheet_wizard_view.xml',
         'views/advance_action_views.xml',
         'views/res_partner_views.xml',
-        'controllers/contacts_list.xml'
+        'views/contacts_list.xml',
+        'views/hr_employee_views.xml'
 
     ],
     "license": "LGPL-3"

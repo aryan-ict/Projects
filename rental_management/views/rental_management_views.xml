@@ -46,22 +46,6 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button type="object"
-                            string="button"
-                            name="get_data"
-                            class="btn-primary"/>
-                    <button type="object"
-                            string="Check Email"
-                            name="get_data_email"
-                            class="btn-primary"/>
-                    <button type="object"
-                            string="Check Email True"
-                            name="get_email_true"
-                            class="btn-primary"/>
-                    <button type="object"
-                            string="button 2"
-                            name="get_data_name"
-                            class="btn-primary"/>
                     <field name="state"
                            widget="statusbar"
                            options="{'clickable':'True'}"/>
@@ -73,7 +57,7 @@
                             <field name="name"/>
                             <field name="partner_id" context="{'cus_country':'country'}"/>
                             <field name="rental_type_id"/>
-<!--                            <field name="rent_ids" widget="many2many_tags"/>-->
+                            <!--                            <field name="rent_ids" widget="many2many_tags"/>-->
                         </group>
                         <group>
                             <field name="start_date"/>

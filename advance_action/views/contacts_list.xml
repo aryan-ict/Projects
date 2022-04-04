@@ -16,11 +16,9 @@
                                     <h6>
                                         <b>
                                             <th>name</th>
-                                            <th>Job Position</th>
-                                            <th>Phone No.</th>
                                             <th>Email</th>
                                             <th>Country</th>
-                                            <th>External link</th>
+                                            <th>More Details</th>
                                         </b>
                                     </h6>
                                 </tr>
@@ -32,21 +30,17 @@
                                             <span t-esc="rec.name"/>
                                         </td>
                                         <td>
-                                            <span t-esc="rec.function"/>
-                                        </td>
-                                        <td>
-                                            <span t-esc="rec.phone"/>
-                                        </td>
-                                        <td>
                                             <span t-esc="rec.email"/>
                                         </td>
                                         <td>
                                             <span t-esc="rec.country_id.name"/>
                                         </td>
                                         <td>
-                                            <a t-attf-href="/contacts/details/{{slug(rec)}}">
-                                               Details
-                                            </a>
+                                            <center>
+                                                <a t-attf-href="/contacts/details/{{slug(rec)}}">
+                                                    Details
+                                                </a>
+                                            </center>
                                         </td>
                                     </tr>
                                 </t>
@@ -66,31 +60,25 @@
                         <h2>Contacts Details</h2>
                     </center>
                     <br/>
-                    <table width="100%" class="table-striped table">
-                        <thead style="font-size:23px;">
-                            <tr>
-                                <h6>
-                                    <b>
-                                        <th>Phone No.</th>
-                                        <th>Email</th>
-                                        <th>Country</th>
-                                    </b>
-                                </h6>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <td>
-                                <span t-esc="details.phone"/>
-                            </td>
-                            <td>
-                                <span t-esc="details.email"/>
-                            </td>
-                            <td>
-                                <span t-esc="details.country_id.name"/>
-                            </td>
-                        </tbody>
-                    </table>
+                    <center>
+                        <img style="width :158px; height: 158px; border-radius: 50px;"
+                             t-att-src="'/web/image/res.partner/%s/image_1920' % details.id" alt="Image"/>
+                        <br/>
+                        Name :
+                        <span t-esc="details.name"/>
+                        <br/>
+                        Job Position :
+                        <span t-esc="details.function"/>
+                        <br/>
+                        Phone No :
+                        <span t-esc="details.phone"/>
+                        <br/>
+                        Email :
+                        <span t-esc="details.email"/>
+                        <br/>
+                        Country :
+                        <span t-esc="details.country_id.name"/>
+                    </center>
                 </div>
             </div>
         </t>

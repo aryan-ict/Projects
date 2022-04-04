@@ -1,0 +1,6 @@
+<odoo>
+    <menuitem id="menu_excel_timesheet"
+              name="Employee Timesheet Report"
+              parent="hr.hr_menu_hr_reports"
+              action="action_window_timesheet_wizard"/>
+</odoo>

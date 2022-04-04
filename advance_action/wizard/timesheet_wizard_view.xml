@@ -1,0 +1,24 @@
+<odoo>
+    <record model="ir.ui.view" id="timesheet_wizard_form">
+        <field name="name">form.view.timesheet.wizard</field>
+        <field name="model">timesheet.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="employee_ids"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_window_timesheet_wizard">
+        <field name="name">Timesheet Wizard Window</field>
+        <field name="res_model">timesheet.wizard</field>
+        <field name="view_id" ref="timesheet_wizard_form"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
+
