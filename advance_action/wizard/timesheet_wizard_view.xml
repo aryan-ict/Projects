@@ -9,6 +9,16 @@
                     <field name="start_date"/>
                     <field name="end_date"/>
                 </group>
+                <footer>
+                    <button name="timesheet_button"
+                            type="object"
+                            string="Print"
+                            class="btn-primary"/>
+                    <button special="cancel"
+                            string="Cancel"
+                            class="btn-secondary"/>
+
+                </footer>
             </form>
         </field>
     </record>

@@ -1,0 +1,30 @@
+<odoo>
+    <!-- Tree View -->
+    <record model="ir.ui.view" id="second_exam_list">
+        <field name="name">view.tree.second.exam</field>
+        <field name="model">second.exam</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="second_exam_form">
+        <field name="name">view.form.second.exam</field>
+        <field name="model">second.exam</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record model="ir.actions.act_window" id="second_exam_action_window">
+        <field name="name">Second Exam</field>
+        <field name="res_model">second.exam</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

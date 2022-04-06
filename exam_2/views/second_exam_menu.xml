@@ -1,0 +1,11 @@
+<odoo>
+    <!-- Main Menu -->
+    <menuitem name="Exam 2"
+              id="second_exam_menu_root"/>
+
+    <!-- Sub Menu -->
+    <menuitem name="Exam 2"
+              id="second_exam_menu_1"
+              parent="second_exam_menu_root"
+              action="second_exam_action_window"/>
+</odoo>
