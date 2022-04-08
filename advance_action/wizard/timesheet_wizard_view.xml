@@ -10,7 +10,7 @@
                     <field name="end_date"/>
                 </group>
                 <footer>
-                    <button name="timesheet_button"
+                    <button name="timesheet_report_button"
                             type="object"
                             string="Print"
                             class="btn-primary"/>

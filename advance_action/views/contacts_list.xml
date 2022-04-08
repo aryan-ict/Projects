@@ -53,6 +53,7 @@
     </template>
 
     <template id="contacts_detail" name="Contact Detail">
+        <title><t t-esc="details.name"/></title>
         <t t-call="website.layout">
             <div class="oe_structure">
                 <div class="container">
