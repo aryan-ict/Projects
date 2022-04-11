@@ -3,6 +3,7 @@ import xlwt
 from xlwt import easyxf
 import base64
 from io import BytesIO
+from dateutil.relativedelta import relativedelta
 
 
 class TimesheetWizard(models.TransientModel):
@@ -44,7 +45,9 @@ class TimesheetWizard(models.TransientModel):
             col = 3
             worksheet.write(row, col, rec.name)
             new_row = row
-            for project in self.env['account.analytic.line'].search([('employee_id', '=', rec.id)]):
+            for project in self.env['account.analytic.line'].search(
+                    [('employee_id', '=', rec.id), ('date', '>=', self.start_date),
+                     ('date', '<=', self.end_date)]):
                 col = 4
                 worksheet.write(new_row, col, project.project_id.name)
                 new_row += 1
@@ -59,11 +62,19 @@ class TimesheetWizard(models.TransientModel):
                 worksheet.write(new_row, col, description.name)
                 new_row += 1
             new_row = row
+            tot_hours = 0
             for hours in self.env['account.analytic.line'].search([('employee_id', '=', rec.id)]):
                 col = 7
                 worksheet.write(new_row, col, hours.unit_amount, format_2)
+                tot_hours += hours.unit_amount
                 new_row += 1
             row = new_row
+            worksheet.write(row, 7, tot_hours)
+            row += 1
+            # print("---------------------------", row)
+            # formula = xlwt.Formula('SUM(H9:H17)')
+            # worksheet.write(row, 7, formula)
+            # print("-------------------", formula)
 
         fp = BytesIO()
         workbook.save(fp)
