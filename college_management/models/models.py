@@ -11,6 +11,8 @@ class CollegeManagement(models.Model):
     name = fields.Char(string='Name')
     last_name = fields.Char(string='Last Name')
     mobile_no = fields.Char(string='Mobile Number')
+    email = fields.Char(string="Email")
+    partner_id = fields.Many2one('res.partner', string="Customer")
     description = fields.Text()
     select_type = fields.Selection([('option1', 'Graduation'),
                                     ('option2', 'Post Graduation')],

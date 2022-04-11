@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+        <record id="mail_template_college_confirmation" model="mail.template">
+            <field name="name">College Confirmation: Send by Email</field>
+            <field name="model_id" ref="college_management.model_college_management"/>
+            <field name="subject">{{object.name}} :College Confirmation</field>
+            <field name="email_from">{{object.partner_id.email}}</field>
+            <field name="email_to">{{object.email}}</field>
+            <field name="body_html" type="html">
+                <p>
+                    Hello Mr/Mrs. <span t-esc="object.name"/> <span t-esc="object.last_name"/>,
+                    <br/>
+                    Mobile No. <span t-esc="object.mobile_no"/>,
+                    <br/>
+                    Date of Birth <span t-esc="object.dob"/>,
+                    <br/>
+                    Selected Degree Type <span style="color:blue;" t-esc="object.select_type"/>
+                    <br/>
+                    <p style="color:green;">
+                       Greetings, You are <b>Selected</b> for the College you applied for.
+                    </p>
+
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

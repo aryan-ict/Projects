@@ -76,6 +76,8 @@
                         <field name="last_name"/>
                         <field name="full_name"/>
                         <field name="mobile_no"/>
+                        <field name="email" widget="email"/>
+                        <field name="partner_id"/>
                         <field name="description"/>
                         <!-- Creating radio button using radio widget -->
                         <field name="select_type" widget="radio"

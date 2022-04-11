@@ -23,6 +23,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'data/mail_template.xml',
         'wizard/wizard_views.xml',
         'views/views.xml',
         # 'views/student_views.xml',
