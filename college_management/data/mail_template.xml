@@ -4,7 +4,7 @@
             <field name="name">College Confirmation: Send by Email</field>
             <field name="model_id" ref="college_management.model_college_management"/>
             <field name="subject">{{object.name}} :College Confirmation</field>
-            <field name="email_from">{{object.partner_id.email}}</field>
+            <field name="email_from">aryan.icreative@gmail.com</field>
             <field name="email_to">{{object.email}}</field>
             <field name="body_html" type="html">
                 <p>

@@ -64,6 +64,11 @@
                             type="object"
                             string="Unlink Button"
                             class="btn-primary"/>
+                    <button name="send_email_button"
+                            type="object"
+                            string="Send Email"
+                            class="btn-secondary"
+                            attrs="{'invisible':[('status','!=','confirm')]}"/>
                     <!-- Creating statusbar using widget, statusbar will be clickable and will show keys writen in status_visible attribute -->
                     <field name="status"
                            widget="statusbar"

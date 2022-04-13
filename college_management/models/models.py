@@ -63,9 +63,15 @@ class CollegeManagement(models.Model):
             res.append((rec.id, '%s %s' % (rec.name, rec.last_name)))
         return res
 
-    # @api.model
-    # def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
-    #     if args is None:
-    #         args = []
-    #     domain = args + [('mobile_no', operator, name)]
-    #     return super(CollegeManagement, self).search(domain, limit=limit).name_get()
+    def send_email_button(self):
+        print("email")
+        template_id = self.env.ref("college_management.mail_template_college_confirmation").id
+        template = self.env['mail.template'].browse(template_id)
+        template.send_mail(self.id, force_send=True)
+
+        # @api.model
+        # def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
+        #     if args is None:
+        #         args = []
+        #     domain = args + [('mobile_no', operator, name)]
+        #     return super(CollegeManagement, self).search(domain, limit=limit).name_get()
