@@ -1,0 +1,9 @@
+<odoo>
+    <menuitem name="Subscriptions Lines"
+              id="subscriptions_lines_root"/>
+
+    <menuitem name="Subscriptions Lines"
+              id="subscriptions_lines_menu1"
+              parent="subscriptions_lines_root"
+              action="action_window_subscriptions_lines"/>
+</odoo>

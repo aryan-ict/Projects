@@ -1,0 +1,33 @@
+<odoo>
+     <record model="ir.ui.view" id="subscriptions_lines_list">
+        <field name="name">tree.view.subscriptions.lines</field>
+        <field name="model">subscriptions.lines</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="phone"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="subscriptions_lines_form">
+        <field name="name">form.view.subscriptions.lines</field>
+        <field name="model">subscriptions.lines</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="phone"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_window_subscriptions_lines">
+        <field name="name">Subscriptions Lines Window</field>
+        <field name="res_model">subscriptions.lines</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
