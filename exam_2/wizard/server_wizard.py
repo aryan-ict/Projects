@@ -10,7 +10,8 @@ class ServerWizard(models.TransientModel):
 
     def create_so(self):
         """Function to get order lines on the
-        click of the button in wizard."""
+        click of the button in wizard.
+        :return:Url"""
         new_lines = []
         for res in self.sale_order_ids:
             new_lines.append((0, 0, {
@@ -22,6 +23,11 @@ class ServerWizard(models.TransientModel):
             vals = self.env['sale.order'].create({'partner_id': rec, 'order_line': new_lines})
             print("-------------------------", vals)
         print("-------------------------", new_lines)
+        return {
+            'type': 'ir.actions.act_url',
+            'target': 'new',
+            'url': 'http://localhost:15000/web#cids=1&menu_id=185&action=296&model=sale.order&view_type=list'
+        }
 
 
 class ServerWizardOtm(models.TransientModel):
