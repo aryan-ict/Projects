@@ -22,7 +22,6 @@
                                 <field name="filter_order_ids"
                                        domain="[('date_order', '&gt;', time.strftime('%%Y-04-%d%%'))]"/>
                             </div>
-
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,6 @@
 """This model is for Invoicing."""
+import random
+import string
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -7,6 +9,8 @@ class AccountMoveLine(models.Model):
     """This class is for fields inherited in Invoice Lines."""
     _inherit = 'account.move'
     _description = 'Invoice'
+
+    token_no = fields.Char(string="Token No")
 
     def generate_bill(self):
         """This function creates Bills based on
@@ -27,3 +31,11 @@ class AccountMoveLine(models.Model):
                 })
         else:
             raise ValidationError("The State of invoice must be Posted.")
+
+    def generate_number(self):
+        """Function to generate random number
+        on the click of button."""
+        num1 = random.choice(string.digits)
+        num2 = random.choice(string.ascii_letters)
+        num3 = random.choice(string.ascii_letters)
+        self.token_no = num1 + num2 + num3 + "-M"
