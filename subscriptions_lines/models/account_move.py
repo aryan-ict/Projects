@@ -10,7 +10,7 @@ class AccountMoveLine(models.Model):
     _inherit = 'account.move'
     _description = 'Invoice'
 
-    token_no = fields.Char(string="Token No")
+    token_no = fields.Char(string="Token No", readonly=True)
 
     def generate_bill(self):
         """This function creates Bills based on

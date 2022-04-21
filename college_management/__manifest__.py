@@ -18,7 +18,8 @@
     'depends': [
         'base',
         'mail',
-        'hr'
+        'hr',
+        'website'
     ],
     # always loaded
     'data': [
@@ -26,6 +27,7 @@
         'data/mail_template.xml',
         'wizard/wizard_views.xml',
         'views/views.xml',
+        'views/website_form.xml'
         # 'views/student_views.xml',
     ],
     "license": "LGPL-3"

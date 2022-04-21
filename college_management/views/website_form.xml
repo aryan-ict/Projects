@@ -1,0 +1,84 @@
+<odoo>
+    <record id="college_form_menu" model="website.menu">
+        <field name="name">College Management Form</field>
+        <field name="url">/college</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+
+
+    <template id="create_form" name="Create Record">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <form role="form" action="/college/webstudent" method="POST">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="form-group">
+                                <label for="name" class="control-label">Your Name</label>
+                                <input type="text" name="name" t-att-value="name" id="name"
+                                       class="form-control" placeholder="Enter Name" required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="mobile_no" class="control-label">Mobile Number</label>
+                                <input type="text" name="mobile_no" t-att-value="mobile_no" id="mobile_no"
+                                       class="form-control" required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="control-label">Email</label>
+                                <input type="email" name="email" t-att-value="email" id="email"
+                                       class="form-control" required="required"/>
+                            </div>
+                            <div class="clearfix oe_login_buttons">
+                                <button type="submit" class="btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="college_list" name="College List">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br/>
+                    <center>
+                        <h2>College Students List</h2>
+                    </center>
+                    <br/>
+                    <center>
+                        <table width="80%" class="table-striped table-bordered table-">
+                            <thead style="font-size:23px;">
+                                <tr>
+                                    <h6>
+                                        <b>
+                                            <th>Name</th>
+                                            <th>Mobile Number</th>
+                                            <th>Email</th>
+                                        </b>
+                                    </h6>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="college_list" t-as="rec">
+                                    <tr>
+                                        <td>
+                                            <span t-esc="rec.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="rec.mobile_no"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="rec.email"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </center>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

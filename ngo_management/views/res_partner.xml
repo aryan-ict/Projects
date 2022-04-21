@@ -1,0 +1,73 @@
+<?xml version= "1.0" encoding= "UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="ngo_check_bool" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+
+                <div class="oe_button_box" name="button_box">
+                    <button type="object" name="total_orphan_members"
+                            class="oe_stat_button" icon="fa-external-link">
+                        <div class="o_field_widget o_stat_info" height="55">
+                            <field name="orphan_members" string=" " widget="statinfo"/>
+                            <span class="o_stat_text" height="23%">Orphan</span>
+                            <span class="o_stat_text">Members</span>
+                        </div>
+                    </button>
+<!--                    <button type="object" name="total_available_funds"-->
+<!--                            class="oe_stat_button" icon="fa-external-link">-->
+<!--                        <div class="o_field_widget o_stat_info" height="55">-->
+<!--                            <field name="amount" class="o_stat_value"/>-->
+<!--                            <span class="o_stat_text" height="23%">Total</span>-->
+<!--                            <span class="o_stat_text" height="23%">Available</span>-->
+<!--                            <span class="o_stat_text" height="23%">Funds</span>-->
+
+<!--                        </div>-->
+<!--                    </button>-->
+                </div>
+                <field name="company_type" position="after">
+                    <field name="ngo_check" attrs="{'invisible':[('company_type','=','person')]}"/>
+                    <name attrs="{'invisible':[('company_type','=','person')]}">
+                        <b>Ngo</b>
+                    </name>
+                </field>
+            </field>
+        </record>
+
+        <!-- - Kanban View  -->
+        <record id="res_partner_kanban_inherit_id" model="ir.ui.view">
+            <field name="name">res.partner.kanban.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//span[hasclass('oe_kanban_partner_links')]" position="inside">
+                    <span t-if="record.sale_order_count.value>0" class="badge badge-pill">
+                        <i class="fa fa-fw fa-usd" role="img" aria-label="Sale orders" title="Sales orders"/>
+                        <t t-esc="record.sale_order_count.value"/>
+                    </span>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="res_partner_search_view" model="ir.ui.view">
+            <field name="name">res.partner.search</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <search string="Students">
+                    <filter name="filter_ngo" string="NGO" domain="[('ngo_check','=','True')]"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="res_partner_kanban_action_window">
+            <field name="name">res_partner_kanban window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="context">{'search_default_filter_ngo': True}</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="expense_list">
+            <field name="name">Expense list</field>
+            <field name="model">orphans.organization.expense</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="expense_user"/>
+                    <field name="expense_type_id"/>
+                    <field name="expense_amount"/>
+                    <field name="organization_id" />
+                    <field name="notes"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="expense_form">
+            <field name="name">Expense form</field>
+            <field name="model">orphans.organization.expense</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="expense_user"/>
+                            <field name="expense_type_id" style="width:50%" options="{'no_create_edit':True,'no_open': True,}"/>
+                            <field name="currency_id" attrs="{'invisible':1}"/>
+                            <field name="expense_amount" style="width:50%"/>
+                            <field name="organization_id" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                            <field name="notes"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="expense_action_window">
+            <field name="name">Expense</field>
+            <field name="res_model">orphans.organization.expense</field>
+            <field name="view_mode">tree,form</field>
+            <!--  <field name="view_id" ref="expense_list">  -->
+        </record>
+    </data>
+</odoo>

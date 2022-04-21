@@ -1,0 +1,13 @@
+<odoo>
+    <!-- Action for Report -->
+    <record id="expense_details_report" model="ir.actions.report">
+        <field name="name">Expense List</field>
+        <field name="model">orphans.organization.expense</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ngo_management.expense_details_sub_template</field>
+        <field name="report_file">ngo_management.expense_details_sub_template</field>
+        <field name="binding_model_id" ref="model_orphans_organization_expense"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="donation_report_paperformat"/>
+    </record>
+</odoo>

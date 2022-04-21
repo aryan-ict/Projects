@@ -1,0 +1,109 @@
+<odoo>
+    <data>
+        <!--  explicit list view orphans definition  -->
+        <record model="ir.ui.view" id="orphans_organization_form">
+            <field name="name">Organization form</field>
+            <field name="model">orphans.organization</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="tempSmartButton"
+                                    type="object"
+                                    class="oe_stat_button"
+                                    icon="fa-external-link">
+                                <div class="o_field_widget o_stat_info" height="55">
+                                    <field name="orphan_members" class="o_stat_value"/>
+                                    <span class="o_stat_text" height="23%">Orphan</span>
+                                    <span class="o_stat_text">Members</span>
+                                </div>
+                            </button>
+                            <button type="object"
+                                    name="tempSmartButton2"
+                                    class="oe_stat_button"
+                                    icon="fa-external-link">
+                                <div class="o_field_widget o_stat_info" height="55">
+                                    <field name="amount" class="o_stat_value"/>
+                                    <span class="o_stat_text" height="23%">Total</span>
+                                    <span class="o_stat_text" height="23%">Avail Funds</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div>
+                            <field name="name" placeholder="Orphans Organization Name" widget="text"
+                                   style="width:75%; font-size:25px"/>
+                            <field name="o_image" widget="image" class="oe_avatar"/>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="ngo_id"
+                                       options="{'no_quick_create':True,'no_create_edit':True,'no_open': True}"/>
+                                <field name="seats"/>
+                                <field name="street1" placeholder="Street 1"/>
+                                <field name="street2" string="" placeholder="Street 2"/>
+                            </group>
+                            <group>
+                                <div style="width:50%">
+                                    <field name="city" style="width:30%" placeholder="City" string=""/>
+                                    <field name="state_id" style="width:30%" placeholder="State" string=""/>
+                                    <field name="zip" style="width:40%" placeholder="Zip" string=""/>
+                                    <field name="country_id" placeholder="Country" string=""/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="foundation_years"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--  - Kanban View   -->
+        <record model="ir.ui.view" id="organization_kanban">
+            <field name="name">organization kanban View</field>
+            <field name="model">orphans.organization</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban" sample="1">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
+                                <div t-attf-class="oe_kanban_global_click">
+                                    <field name="o_image" widget="image"/>
+                                    <div class="o_kanban_details">
+                                        <br/>
+                                        <br/>
+                                        <field name="name"/>
+                                        -
+                                        <field name="state_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="orphans_organization_tree">
+            <field name="name">Orphans Expense tree</field>
+            <field name="model">orphans.organization</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="foundation_years"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--  actions opening views on models  -->
+        <record model="ir.actions.act_window" id="orphans_organization_action_window">
+            <field name="name">orphans_organization window</field>
+            <field name="res_model">orphans.organization</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+
+    </data>
+</odoo>

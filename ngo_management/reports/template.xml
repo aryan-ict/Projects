@@ -1,0 +1,45 @@
+<odoo>
+    <!-- Sub Template -->
+    <template id="doner_receipt_sub_template">
+        <t t-foreach="docs" t-as="o">
+            <center>
+                <h1>Doner Receipt</h1>
+            </center>
+            <br/>
+            <br/>
+            <div class="page">
+                Name :
+                <span t-field="o.name"/>
+                <br/>
+                Orphans Home :
+                <span t-field="o.organization_id"/>
+                <br/>
+                Phone No. :
+                <span t-field="o.phone"/>
+                <br/>
+                Email :
+                <span t-field="o.email"/>
+                <br/>
+                Amount :
+                <span t-field="o.amount"/>
+                <br/>
+                <br/>
+                <center>
+                    <h2>Thank You for Donating</h2>
+                </center>
+            </div>
+        </t>
+
+    </template>
+
+    <!-- Main Template -->
+    <template id="ngo_management.doner_receipt_main_template">
+        <t t-call="web.html_container">
+            <t t-cal="web.external_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="ngo_management.doner_receipt_sub_template"/>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

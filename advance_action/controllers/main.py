@@ -8,7 +8,7 @@ class Website(http.Controller):
 
     @http.route(['/contacts'], type='http', auth="public", website=True)
     def contacts(self, **data):
-        """Function to get the records sets of res.partner.
+        """Function to get the records sets of res_partner.
         :return: record set"""
         contacts = request.env['res.partner'].search([])
         return request.render(

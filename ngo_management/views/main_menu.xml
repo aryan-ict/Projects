@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Top menu item -->
+
+<!--        <menuitem name="NGO"-->
+<!--                  id="NGO_main_menu_root"-->
+<!--                  action="res_partner_kanban_action_window"-->
+<!--                  />-->
+
+         <menuitem name="NGO"
+                  id="NGO_main_menu_root_new"
+                  action="res_partner_kanban_action_window"
+                  />
+
+        <!-- menu categories with actions-->
+
+        <menuitem name="Orphan Organization"
+                  id="orphan_organization_menu_root"
+                  parent="NGO_main_menu_root_new"
+                  action="orphans_organization_action_window"
+                  />
+
+        <menuitem name="Orphan Request"
+                  id="orphan_request_menu_root"
+                  parent="NGO_main_menu_root_new"
+                  />
+
+        <menuitem name="Orphan Members"
+                  id="orphan_members_menu_root"
+                  parent="NGO_main_menu_root_new"
+                  action="orphans_member_action_window"
+                  />
+
+        <menuitem name="Donation"
+                  id="donation_menu_root"
+                  parent="NGO_main_menu_root_new"
+                  action="orphans_donation_action_window"
+                  />
+
+        <menuitem name="Expense"
+                  id="expense_main_menu_root"
+                  parent="NGO_main_menu_root_new"
+                  />
+
+        <menuitem name="Advertise"
+                  id="advertise_menu"
+                  parent="NGO_main_menu_root_new"
+                  action="organization_advertise_action_window_id"
+                  />
+<!--         action menu for orphan request        -->
+
+<!--        <menuitem name="Request List"-->
+<!--                  id="request_list_menu_root"-->
+<!--                  parent="orphan_request_menu_root"-->
+<!--                  action="orphans_request_action_window"-->
+<!--                  />-->
+        <menuitem name="Request List"
+                  id="request_list_menu_id"
+                  parent="orphan_request_menu_root"
+                  action="orphans_request_listview_action_window"
+                  />
+        <menuitem name="Request"
+                  id="request_menu_root"
+                  parent="orphan_request_menu_root"
+                  action="orphans_request_form_action_window"
+                  />
+
+        <menuitem name="Expense"
+                  id="expense_menu_root"
+                  parent="expense_main_menu_root"
+                  action="expense_action_window"
+                  />
+        <menuitem name="Expense Type"
+                  id="expense_type_menu_root"
+                  parent="expense_main_menu_root"
+                  action="expense_type_action_window"
+                  />
+
+    </data>
+</odoo>
