@@ -27,9 +27,16 @@
         'data/mail_template.xml',
         'wizard/wizard_views.xml',
         'views/views.xml',
-        'views/website_form.xml'
+        'views/website_form.xml',
+        'views/login_page.xml'
         # 'views/student_views.xml',
     ],
+    'assets': {
+        'web.assets_frontend': [
+            'college_management/static/src/css/college_form.css',
+            'college_management/static/src/css/login_page.css'
+        ],
+    },
     "license": "LGPL-3"
     # only loaded in demonstration mode
 }

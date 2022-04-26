@@ -1,0 +1,16 @@
+.field_edit input[type=text]{
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.4s ease-in-out;
+}
+
+.field_focus input[type=text]:focus {
+  width: 70%;
+  background-color: grey;
+  color: white;
+}
