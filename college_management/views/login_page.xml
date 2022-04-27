@@ -8,22 +8,41 @@
     <template id="login_page" name="Login">
         <t t-call="website.layout">
             <div id="wrap">
-                <div class="oe_structure">
-                    <div class="container">
+                <div class="oe_structure" style="background-image: url(college_management/static/src/background.jpg);">
+                    <div>
+                        <center>
+                            <h2>Login Form</h2>
+                        </center>
                         <form role="form" method="post">
-                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                            <div class="align_center">
-                                <label for="user_name">Username</label><br/>
+                            <div class="img_container">
+                                <img src="college_management/static/src/img_avatar.png" alt="Avatar" class="avatar"/>
+                            </div>
+                            <div class="align_center container">
+                                <label for="user_name">Username</label>
+                                <br/>
                                 <input type="text" name="user_name" id="user_name" placeholder="Enter Username"
                                        class="login_style" required="required"/>
                             </div>
-                            <div class="align_center">
-                                <label for="password">Password</label><br/>
+                            <div class="align_center container">
+                                <label for="password">Password</label>
+                                <br/>
                                 <input type="password" name="password" id="password" required="required"
-                                       class="login_style"/>
+                                       class="login_style" placeholder="Enter Password"/>
                             </div>
-                            <div class="align_center">
-                                <input type="submit" value="Login" class="login_button"/>
+                            <div class="align_center container">
+                                <input type="submit" value="Login" class="login_btn"/>
+                            </div>
+                            <label>
+                                <input type="checkbox" checked="checked" name="remember" class="align_remember"/>
+                                <p class="align_remember">
+                                    Remember Me
+                                </p>
+                            </label>
+                            <div class="container">
+                                <button type="button" class="cancel_btn">Sign Up</button>
+                                <span class="psw">Forgot
+                                    <a href="#">password?</a>
+                                </span>
                             </div>
                         </form>
                     </div>

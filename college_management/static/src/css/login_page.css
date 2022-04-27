@@ -1,24 +1,71 @@
-.login_style{
+.login_style {
     width: 30%;
     padding: 10px 20px;
     margin: 8px 0;
-    display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    opacity: 0.5
+}
+.login_style:focus {
+    opacity: 1;
+}
+.align_center {
+    position: relative;
+    left: 383px;
 }
 
-.align_center{
-    text-align: center;
+.align_remember {
+    position: relative;
+    left: 383px;
+    display: inline;
 }
 
-.login_button{
+.login_btn {
     width: 30%;
-    background-color: #4CAF50;
+    background-color: Green;
     color: white;
     padding: 10px 20px;
     margin: 8px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.login_btn:hover {
+    opacity: 0.8;
+}
+
+.cancel_btn {
+    width: auto;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    background-color: #ff1a1a;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 1
+}
+
+.cancel_btn:hover {
+    opacity:0.8;
+}
+
+.img_container {
+    text-align: center;
+    margin: 24px 00 12px 0;
+}
+
+img.avatar {
+    width: 10%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 10px;
 }

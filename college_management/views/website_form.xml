@@ -13,18 +13,18 @@
                         <form role="form" action="/college/webstudent" method="POST" class="field_edit field_focus">
                             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                             <div class="form-group">
-                                <label for="name" class="control-label">Your Name</label>
+                                <label for="name" class="control-label">Your Name</label><br/>
                                 <input type="text" name="name" t-att-value="name" id="name"
-                                       class="form-control" placeholder="Enter Name" required="required"/>
+                                       placeholder="Enter Name" required="required"/>
                                 <div>
                                     <label for="mobile_no" class="control-label">Mobile Number</label>
                                     <input type="text" name="mobile_no" t-att-value="mobile_no" id="mobile_no"
-                                           class="form-control" required="required"/>
+                                           required="required"/>
                                 </div>
                                 <div>
                                     <label for="email" class="control-label">Email</label>
                                     <input type="text" name="email" t-att-value="email" id="email"
-                                           class="form-control" required="required"/>
+                                           required="required"/>
                                 </div>
                             </div>
                             <div class="clearfix oe_login_buttons">
