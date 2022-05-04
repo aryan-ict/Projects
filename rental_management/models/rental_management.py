@@ -21,6 +21,7 @@ class RentalManagement(models.Model):
                              default='draft', tracking=True)
     # rent_ids = fields.Many2many('rental.type', 'rent_m2m_table', 'rental_management_id',
     #                             'rental_type_id', string="Rent")
+    image_1920 = fields.Binary(string='Image')
 
     _sql_constraints = [
         ('check', 'CHECK((start_date <= end_date))', "End date must be greater then Start Date")
