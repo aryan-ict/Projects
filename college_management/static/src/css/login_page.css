@@ -36,7 +36,7 @@
     opacity: 0.8;
 }
 
-.cancel_btn {
+.signup_btn {
     width: auto;
     color: white;
     padding: 10px 18px;
@@ -47,7 +47,7 @@
     opacity: 1
 }
 
-.cancel_btn:hover {
+.signup_btn:hover {
     opacity:0.8;
 }
 
@@ -61,11 +61,35 @@ img.avatar {
     border-radius: 50%;
 }
 
-.container {
-    padding: 16px;
-}
-
 span.psw {
     float: right;
     padding-top: 10px;
+}
+
+.fb {
+    background-color: #3B5998;
+    color: white;
+    margin-left: 120px;
+}
+
+.twitter {
+    background-color: #55ACEE;
+    color: white;
+    margin-left: 150px;
+}
+
+.google {
+    background-color: #ff3300;
+    color: white;
+    margin-left: 180px;
+}
+
+.btn_login {
+    width: 25%;
+    padding: 10px 20px;
+    margin: 8px 0px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding-left
 }

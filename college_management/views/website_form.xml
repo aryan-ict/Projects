@@ -17,14 +17,14 @@
                                 <input type="text" name="name" t-att-value="name" id="name"
                                        placeholder="Enter Name" required="required"/>
                                 <div>
-                                    <label for="mobile_no" class="control-label">Mobile Number</label>
+                                    <label for="mobile_no" class="control-label">Mobile Number</label><br/>
                                     <input type="text" name="mobile_no" t-att-value="mobile_no" id="mobile_no"
-                                           required="required"/>
+                                           required="required" placeholder="Enter Mobile Number"/>
                                 </div>
                                 <div>
-                                    <label for="email" class="control-label">Email</label>
+                                    <label for="email" class="control-label">Email</label><br/>
                                     <input type="text" name="email" t-att-value="email" id="email"
-                                           required="required"/>
+                                           required="required" placeholder="Enter Email"/>
                                 </div>
                             </div>
                             <div class="clearfix oe_login_buttons">

@@ -19,7 +19,8 @@
         'base',
         'mail',
         'hr',
-        'website'
+        'website',
+        'portal'
     ],
     # always loaded
     'data': [

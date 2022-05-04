@@ -10,6 +10,6 @@
 
 .field_focus input[type=text]:focus {
   width: 70%;
-  background-color: grey;
-  color: white;
+  background-color: #ADD8E6;
+  color: black;
 }

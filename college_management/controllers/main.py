@@ -1,5 +1,6 @@
 from odoo import http, _
 from odoo.http import request
+from odoo.addons.portal.controllers import portal
 
 
 class Website(http.Controller):
@@ -18,8 +19,19 @@ class Website(http.Controller):
     def college_webstudent(self, **kw):
         """Function to get & store data in college_management.
         :return: record set"""
-        request.env['college.management'].sudo().create(kw)
+        if kw:
+            request.env['college.management'].sudo().create(kw)
         college_list = request.env['college.management'].search([])
         return request.render('college_management.college_list', {
             'college_list': college_list
         })
+
+
+class CollegeCustomerPortal(portal.CustomerPortal):
+    def _prepare_home_portal_values(self, counters):
+        values = super(CollegeCustomerPortal, self)._prepare_home_portal_values(counters)
+        student_count = request.env["college.management"].search_count([])
+        values.update({
+            'student_count': student_count
+        })
+        return values
