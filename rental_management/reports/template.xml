@@ -35,44 +35,9 @@
                     <li>Status:
                         <span t-field="o.state"/>
                     </li>
-                    <table width="100%" style="border:1px solid black;border-collapse:collapse">
-                        <tr>
-                            <th>Name</th>
-                            <th>Rental Type</th>
-                            <th>Rental Product</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                        </tr>
-
-                        <t t-foreach="docs" t-as="a">
-                            <tr>
-                                <td>
-                                    <span t-field="a.name"/>
-                                </td>
-                                <td>
-                                    <span t-field="a.rental_type_id"/>
-                                </td>
-                                <td>
-                                    <span t-field="a.rental_product"/>
-                                </td>
-                                <td>
-                                    <span t-field="a.start_date"/>
-                                </td>
-                                <td>
-                                    <span t-field="a.end_date"/>
-                                </td>
-                                <td>
-                                    <span t-field="a.price"/>
-                                </td>
-                                <td>
-                                    <span t-field="a.state"/>
-                                </td>
-                            </tr>
-                        </t>
-
-                    </table>
+                    <li>
+                        <img t-attf-src="'/web/image/rental.management/%s/image_1920' % id" alt="Image"/>
+                    </li>
                 </ul>
             </div>
         </t>

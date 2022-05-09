@@ -20,7 +20,8 @@
         'mail',
         'hr',
         'website',
-        'portal'
+        'portal',
+        'contacts'
     ],
     # always loaded
     'data': [

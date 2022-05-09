@@ -1,0 +1,75 @@
+<odoo>
+    <record id="hr_referral_app_tree" model="ir.ui.view">
+        <field name="name">hr.referral.app.tree</field>
+        <field name="model">hr.referral.application</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="referral_id"/>
+                <field name="degree_id"/>
+                <field name="department_id"/>
+                <field name="stages" widget="badge"
+                       decoration-success="stages=='draft'"
+                       decoration-info="stages=='approve'"
+                       decoration-danger="stages=='cancel'"/>
+                <field name="expected_salary" optional="hide"/>
+                <field name="summary" optional="hide"/>
+                <field name="expected_date" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_referral_app_form" model="ir.ui.view">
+        <field name="name">hr.referral.app.form</field>
+        <field name="model">hr.referral.application</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="stages"
+                           widget="statusbar"/>
+                    <button name="approve_button"
+                            type="object"
+                            string="Approve"
+                            class="btn-primary"
+                            attrs="{'invisible':[('stages', '=', 'approve')]}"/>
+                    <button name="create_application"
+                            type="object"
+                            string="Create Application"
+                            class="btn-secondary"
+                            attrs="{'invisible':[('stages', 'in', ['draft', 'cancel'])]}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="email" widget="email"/>
+                            <field name="referral_id"/>
+                            <field name="degree_id"/>
+                            <field name="expected_date"/>
+                        </group>
+                        <group>
+                            <field name="department_id"/>
+                            <field name="expected_salary"/>
+                            <field name="summary"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hr_referral_app_action">
+        <field name="name">Referral Registration</field>
+        <field name="res_model">hr.referral.application</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="hr_referral_app_tree"/>
+    </record>
+
+    <menuitem name="Referral Program" id="hr_referral_app_menu_root" action="hr_referral_app_action"/>
+
+    <menuitem name="Referral Program"
+              id="hr_referral_app_menu_1"
+              parent="hr_referral_app_menu_root"
+              action="hr_referral_app_action"/>
+</odoo>

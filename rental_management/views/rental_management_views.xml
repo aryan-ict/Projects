@@ -58,7 +58,7 @@
                             <field name="partner_id" context="{'cus_country':'country'}"/>
                             <field name="rental_type_id"/>
                             <field name="image_1920" widget="image"/>
-                            <!--                            <field name="rent_ids" widget="many2many_tags"/>-->
+                            <field name="rent_ids" editable="bottom"/>
                         </group>
                         <group>
                             <field name="start_date"/>

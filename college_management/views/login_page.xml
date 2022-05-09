@@ -40,10 +40,10 @@
                             </label>
                             <div>
                                 <a href="http://localhost:15000/college">
-                                   Sign Up
+                                    <button type="button" class="signup_btn">Sign Up</button>
                                 </a>
                                 <span class="psw">Forgot
-                                    <a href="#">password?</a>
+                                    <a href="http://localhost:15000/college">password?</a>
                                 </span>
                             </div>
                             <div style="position: relative; left: 386px">

@@ -13,7 +13,8 @@ class Website(http.Controller):
     @http.route('/college', type='http', auth='user', website=True)
     def college(self, **kw):
         """Function to render form."""
-        return request.render('college_management.create_form', {})
+        customer_list = request.env['res.partner'].sudo().search([])
+        return request.render('college_management.create_form', {'partner': customer_list})
 
     @http.route('/college/webstudent', type='http', auth='user', website=True)
     def college_webstudent(self, **kw):

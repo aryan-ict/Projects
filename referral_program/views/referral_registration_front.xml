@@ -1,0 +1,153 @@
+<odoo>
+    <record id="referral_program_menu" model="website.menu">
+        <field name="name">Referral Program</field>
+        <field name="url">/referral_hr</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+
+    <template id="hr_referral_program" name="Referral Program">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <br/>
+                        <h2>
+                            Referral Registration
+                        </h2>
+                        <form role="form" action="/referral_hr/thankyou" method="POST" class="line-2">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <br/>
+                            <div class="form-group">
+                                <label for="name" class="control-label">Name</label>
+                                <br/>
+                                <input type="text" class="referral_style" name="name" t-att-value="name" id="name"
+                                       placeholder="Enter Name" required="required"/>
+                                <div>
+                                    <label for="email" class="control-label">Email</label>
+                                    <br/>
+                                    <input type="email" class="referral_style" name="email" t-att-value="email"
+                                           id="email"
+                                           required="required"/>
+                                </div>
+                                <div>
+                                    <label for="referral_id" class="control-label">Referral Name</label>
+                                    <br/>
+                                    <select class="m2o_style" name="referral_id" t-att-value="referral_id">
+                                        <t t-foreach="referral_list" t-as="ref">
+                                            <option t-att-value="ref.id" t-esc="ref.name"/>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="degree_id" class="control-label">Referral Name</label>
+                                    <br/>
+                                    <select class="m2o_style" name="degree_id" t-att-value="degree_id">
+                                        <t t-foreach="degree_list" t-as="degree">
+                                            <option t-att-value="degree.id" t-esc="degree.name"/>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="department_id" class="control-label">Referral Name</label>
+                                    <br/>
+                                    <select class="m2o_style" name="department_id" t-att-value="department_id">
+                                        <t t-foreach="department_list" t-as="dep">
+                                            <option t-att-value="dep.id" t-esc="dep.name"/>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="expected_salary" class="control-label">Expected Salary</label>
+                                    <br/>
+                                    <input type="number" step="0.01" class="referral_style" name="expected_salary"
+                                           t-att-value="expected_salary" id="expected_salary"/>
+                                </div>
+                                <div>
+                                    <label for="expected_date" class="control-label">Expected Joining Date</label>
+                                    <br/>
+                                    <input type="date" class="referral_style" name="expected_date"
+                                           t-att-value="expected_date" id="expected_date"/>
+                                </div>
+                                <div>
+                                    <label for="summary" class="control-label">Summary</label>
+                                    <br/>
+                                    <textarea id="summary" name="summary" t-att-value="summary" rows="4" cols="50">Type here...</textarea>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn-info">SUBMIT</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="hr_referral_thankyou" name="Thank You">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <h2>
+                            <b>
+                                Thank You For Registration
+                            </b>
+                        </h2>
+                        <form action="/referral_details" method="post">
+                            <button type="submit" class="btn_purple">Check Your Record</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="referral_list" name="College List">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br/>
+                    <center>
+                        <h2>Referral Application Record</h2>
+                    </center>
+                    <br/>
+                    <center>
+                        <table width="80%" class="table-striped table-bordered table-">
+                            <thead style="font-size:23px;">
+                                <tr>
+                                    <h6>
+                                        <b>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Department</th>
+                                            <th>Joining Date</th>
+                                        </b>
+                                    </h6>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="referral_detail" t-as="rec">
+                                    <tr>
+                                        <td>
+                                            <span t-esc="rec.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="rec.email"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="rec.department_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="rec.expected_date"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </center>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

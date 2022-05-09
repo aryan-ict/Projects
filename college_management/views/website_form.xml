@@ -10,21 +10,33 @@
             <div id="wrap">
                 <div class="oe_structure">
                     <div class="container">
-                        <form role="form" action="/college/webstudent" method="POST" class="field_edit field_focus">
+                        <form role="form" action="/college/webstudent" method="POST" class="field_edit">
                             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                             <div class="form-group">
-                                <label for="name" class="control-label">Your Name</label><br/>
+                                <label for="name" class="control-label">Your Name</label>
+                                <br/>
                                 <input type="text" name="name" t-att-value="name" id="name"
                                        placeholder="Enter Name" required="required"/>
                                 <div>
-                                    <label for="mobile_no" class="control-label">Mobile Number</label><br/>
+                                    <label for="mobile_no" class="control-label">Mobile Number</label>
+                                    <br/>
                                     <input type="text" name="mobile_no" t-att-value="mobile_no" id="mobile_no"
                                            required="required" placeholder="Enter Mobile Number"/>
                                 </div>
                                 <div>
-                                    <label for="email" class="control-label">Email</label><br/>
+                                    <label for="email" class="control-label">Email</label>
+                                    <br/>
                                     <input type="text" name="email" t-att-value="email" id="email"
                                            required="required" placeholder="Enter Email"/>
+                                </div>
+                                <div>
+                                    <label for="partner_id" class="control-label">Customer</label>
+                                    <br/>
+                                    <select class="field_select" name="partner_id">
+                                        <t t-foreach="partner" t-as="customer">
+                                            <option t-att-value="customer.id" t-esc="customer.name"/>
+                                        </t>
+                                    </select>
                                 </div>
                             </div>
                             <div class="clearfix oe_login_buttons">
