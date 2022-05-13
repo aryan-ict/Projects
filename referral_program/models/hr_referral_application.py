@@ -4,6 +4,7 @@ from odoo import models, fields, api
 class HrReferralApplication(models.Model):
     _name = "hr.referral.application"
     _description = "Model for Referral Program"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(string="Name")
     email = fields.Char(string="Email")
@@ -21,8 +22,5 @@ class HrReferralApplication(models.Model):
         self.stages = 'approve'
 
     def create_application(self):
-        return {'type': 'ir.actions.act_window',
-                'res_model': 'product.template',
-                'view_mode': 'form',
-                'res_id': self.product_tmpl_id.id,
-                'target': 'new'}
+        """Function for Create Application button."""
+        pass

@@ -1,0 +1,67 @@
+<odoo>
+    <record model="ir.ui.view" id="bulk_product_list">
+        <field name="name">bulk.product.list.view</field>
+        <field name="model">bulk.products</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="master_id"/>
+                <field name="user_id"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="bulk_product_form">
+        <field name="name">bulk.product.form.view</field>
+        <field name="model">bulk.products</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title" >
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Enter Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="master_id"/>
+                        <field name="user_id"/>
+                        <field name="email"/>
+                    </group>
+                    <notebook name="main_notebook">
+                        <page string="Bulk Lines" name="bulk_lines">
+                            <field name="bulk_product_ids">
+                                <tree editable="bottom">
+                                    <field name="product_id"  domain="[('detailed_type', '=', 'product')]"/>
+                                    <field name="description" widget="section_and_note_text"/>
+                                    <field name="product_uom_qty" style="background:#ccccff;"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="bulk_product_action_window">
+        <field name="name">Bulk Product</field>
+        <field name="res_model">bulk.products</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="bulk_product_list"/>
+    </record>
+
+    <menuitem name="Bulk Products"
+              id="bulk_product_menu_root"/>
+
+    <menuitem name="Bulk Products"
+              id="bulk_product_menu"
+              parent="bulk_product_menu_root"
+              action="bulk_product_action_window"/>
+
+     <menuitem id="bulk_product_sale"
+              name="Bulk Product"
+              parent="sale.sale_order_menu"
+              action="bulk_product_action_window"/>
+</odoo>

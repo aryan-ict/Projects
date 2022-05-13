@@ -39,7 +39,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label for="degree_id" class="control-label">Referral Name</label>
+                                    <label for="degree_id" class="control-label">Degree</label>
                                     <br/>
                                     <select class="m2o_style" name="degree_id" t-att-value="degree_id">
                                         <t t-foreach="degree_list" t-as="degree">
@@ -48,7 +48,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label for="department_id" class="control-label">Referral Name</label>
+                                    <label for="department_id" class="control-label">Department</label>
                                     <br/>
                                     <select class="m2o_style" name="department_id" t-att-value="department_id">
                                         <t t-foreach="department_list" t-as="dep">

@@ -1,4 +1,6 @@
 <odoo>
+                    <!-- Tree View -->
+
     <record id="hr_referral_app_tree" model="ir.ui.view">
         <field name="name">hr.referral.app.tree</field>
         <field name="model">hr.referral.application</field>
@@ -20,6 +22,8 @@
         </field>
     </record>
 
+                    <!-- Form View -->
+
     <record id="hr_referral_app_form" model="ir.ui.view">
         <field name="name">hr.referral.app.form</field>
         <field name="model">hr.referral.application</field>
@@ -32,7 +36,8 @@
                             type="object"
                             string="Approve"
                             class="btn-primary"
-                            attrs="{'invisible':[('stages', '=', 'approve')]}"/>
+                            attrs="{'invisible':[('stages', '=', 'approve')]}"
+                            groups="hr_recruitment.group_hr_recruitment_user"/>
                     <button name="create_application"
                             type="object"
                             string="Create Application"
@@ -55,9 +60,16 @@
                         </group>
                     </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>
+
+                    <!-- Actions For Menu -->
 
     <record model="ir.actions.act_window" id="hr_referral_app_action">
         <field name="name">Referral Registration</field>
@@ -65,6 +77,8 @@
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="hr_referral_app_tree"/>
     </record>
+
+                    <!-- Main and Sub-Menu -->
 
     <menuitem name="Referral Program" id="hr_referral_app_menu_root" action="hr_referral_app_action"/>
 

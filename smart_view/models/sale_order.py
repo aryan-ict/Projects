@@ -11,7 +11,7 @@ class SaleOrder(models.Model):
     mobile = fields.Char(string="Mobile")
     email = fields.Char(string="Email")
     customer_ref = fields.Char(string="Customer Reference", related='partner_id.customer_ref')
-    customer_rank = fields.Integer(string="Customer Rank", related='partner_id.customer_rank''')
+    customer_rank = fields.Integer(string="Customer Rank", related='partner_id.customer_rank')
 
     @api.onchange('partner_id')
     def onchange_partner_id(self):

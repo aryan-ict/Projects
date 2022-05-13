@@ -10,12 +10,14 @@ Created to perform Exam Practical tasks.""",
     'website': "https://www.aktivsoftware.com/",
     'category': 'Employee/Employee',
     'version': '15.0.1.0.0',
+    'application': True,
     # any module necessary for this one to work correctly
     'depends': [
         'base',
         'hr',
         'hr_recruitment',
-        'website'
+        'website',
+        'mail'
     ],
     # always loaded
     'data': [
@@ -23,7 +25,7 @@ Created to perform Exam Practical tasks.""",
         'views/hr_referral_application_views.xml',
         'views/referral_registration_front.xml'
     ],
-    'application': True,
+
     'assets': {
         'web.assets_frontend': [
            'referral_program/static/src/css/referral.css'
