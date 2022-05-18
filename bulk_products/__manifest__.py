@@ -15,7 +15,6 @@ Created to perform exam related tasks.""",
     'depends': [
         'base',
         'sale_management',
-        'mail',
         'website'
     ],
 

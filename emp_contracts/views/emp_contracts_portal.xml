@@ -1,0 +1,118 @@
+<odoo>
+    <template id="portal_emp_contracts" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Contracts</t>
+                <t t-set="url" t-value="'/my/contracts'"/>
+                <t t-set="placeholder_count" t-value="'contract_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_contracts" name="My Contracts">
+        <t t-call="portal.portal_layout">
+            <t t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th class="text-left">Name</th>
+                        <th class="text-left">Start Date</th>
+                        <th class="text-left">End Date</th>
+                        <th class="text-left">Working Schedule</th>
+                        <th class="text-left">Monthly Wage</th>
+                        <th class="text-left">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="contracts_list" t-as="rec">
+                        <tr>
+                            <td>
+                                <a t-attf-href="/my/contracts/details/{{slug(rec)}}">
+                                    <t t-esc="rec.name"/>
+                                </a>
+                            </td>
+                            <td>
+                                <t t-esc="rec.date_start"/>
+                            </td>
+                            <td>
+                                <t t-esc="rec.date_end"/>
+                            </td>
+                            <td>
+                                <t t-esc="rec.resource_calendar_id.name"/>
+                            </td>
+                            <td>
+                                <t t-esc="rec.wage"/>
+                            </td>
+                            <td class="badge badge-pill badge-info">
+                                <t t-esc="rec.state"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <template id="contracts_detail" name="Contract Detail">
+        <title>
+            <t t-esc="details.name"/>
+        </title>
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <center>
+                        <h2>Contracts Details</h2>
+                    </center>
+                    <br/>
+                    <center>
+                        <b>
+                            Name :
+                        </b>
+                        <span t-esc="details.name"/>
+                        <br/>
+                        <b>
+                            Start Date :
+                        </b>
+                        <span t-esc="details.date_start"/>
+                        <br/>
+                        <b>
+                            End Date :
+                        </b>
+                        <span t-esc="details.date_end"/>
+                        <br/>
+                        <b>
+                            Working Schedule :
+                        </b>
+                        <span t-esc="details.resource_calendar_id.name"/>
+                        <br/>
+                        <b>
+                            Monthly Wage :
+                        </b>
+                        <span t-esc="details.wage"/>
+                        <form action="/contract/upload" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <input type="hidden" name="project_id" t-att-value="details.id"/>
+                            <input type="file" class="form-control" name="attachment" multiple="true"/>
+                            <button type="submit" class="fa fa-paperclip btn-primary">Upload</button>
+                        </form>
+                    </center>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="emp_contracts_thanks" name="Thank You">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <h2>
+                            <b>
+                                Thank You For Uploading.
+                            </b>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
