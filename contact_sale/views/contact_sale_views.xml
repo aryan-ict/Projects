@@ -1,0 +1,131 @@
+<odoo>
+    <record model="ir.ui.view" id="contact_sale_list">
+        <field name="name">contact.sale.list.view</field>
+        <field name="model">contact.sale</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state=='progress'"
+                  decoration-success="state=='done'"
+                  decoration-danger="state=='cancel'"
+                  default_order="id desc">
+                <field name="name"/>
+                <field name="contact_id"/>
+                <field name="sale_order_id"/>
+                <field name="user_id" widget="many2one_avatar_user"/>
+                <field name="state" widget="badge"
+                       decoration-info="state=='progress'"
+                       decoration-success="state=='done'"
+                       decoration-danger="state=='cancel'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="contact_sale_form">
+        <field name="name">contact.sale.form.view</field>
+        <field name="model">contact.sale</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,progress,done"
+                           options="{'clickable':True}"/>
+                    <button name="progress_button"
+                            type="object"
+                            string="In Progress"
+                            class="btn-primary"
+                            attrs="{'invisible':[('state','in',['progress','done','cancel'])]}"/>
+                    <button name="done_button"
+                            type="object"
+                            string="Confirm"
+                            class="btn-primary"
+                            attrs="{'invisible':[('state','in',['done','draft','cancel'])]}"/>
+                    <button name="cancel_button"
+                            type="object"
+                            string="Cancel"
+                            class="btn-secondary"
+                            attrs="{'invisible':[('state','in',['progress','cancel','draft'])]}"/>
+                    <button name="draft_button"
+                            type="object"
+                            string="Set To Draft"
+                            class="btn-primary"
+                            attrs="{'invisible':[('state','in',['progress','draft','done'])]}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="NEW"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="contact_id"/>
+                        <field name="sale_order_id"/>
+                        <field name="user_id" widget="many2one_avatar_user"/>
+                        <field name="follow_ups"/>
+                    </group>
+                    <notebook name="main_notebook">
+                        <page string="Contact Sale History Lines" name="contact_sale_history_lines">
+                            <field name="contact_sale_history_ids">
+                                <tree editable="bottom">
+                                    <field name="contact_sale_id"/>
+                                    <field name="create_date"/>
+                                    <field name="create_uid" widget="many2one_avatar_user "/>
+                                    <field name="old_state"/>
+                                    <field name="new_state"/>
+                                    <field name="old_follow_up" width="1"/>
+                                    <field name="new_follow_up" width="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="contact_sale_search_view" model="ir.ui.view">
+        <field name="name">contact.sale.search</field>
+        <field name="model">contact.sale</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="filter_draft" string="Draft" domain="[('state','=','draft')]"/>
+                <filter name="filter_progress" string="In Progress" domain="[('state','=','progress')]"/>
+                <filter name="filter_done" string="Done" domain="[('state','=','done')]"/>
+                <filter name="filter_cancel" string="Cancel" domain="[('state','=','cancel')]"/>
+                <filter name="group_by_contact" string="Contact" context="{'group_by':'contact_id'}"/>
+                <filter name="group_by_sale_order" string="Sale Order" context="{'group_by':'sale_order_id'}"/>
+                <filter name="group_by_status" string="Status" context="{'group_by':'state'}"/>
+                <filter name="group_by_user" string="Salesperson" context="{'group_by':'user_id'}"/>
+            </search>
+        </field>
+    </record>
+
+   <!-- <record id="contact_sale_button" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" name="button_box">
+                <button type="object" name="%(contact_sale.contact_sale_list)d" class="oe_stat_button" icon="fa-external-link">
+                    <div class="o_field_widget o_stat_info" height="55">
+                        <field name="orphan_members" string=" " widget="statinfo"/>
+                        <span class="o_stat_text" height="23%">Contact</span>
+                        <span class="o_stat_text">Sale</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record> -->
+
+    <record model="ir.actions.act_window" id="contact_sale_action_window">
+        <field name="name">Contact Sale</field>
+        <field name="res_model">contact.sale</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="view_id" ref="contact_sale_list"/>
+    </record>
+
+</odoo>

@@ -34,14 +34,15 @@ class EmployeePortal(portal.CustomerPortal):
         })
 
     @http.route('/contract/upload', type='http', auth='user', website=True)
-    def upload_files(self, project_id, **post):
+    def upload_files(self, **post):
         attached_files = request.httprequest.files.getlist('attachment')
+        project_id = post.get('project_id')
         print("=========================", project_id)
         for attachment in attached_files:
             print("==========================", post)
             contract = request.env['hr.contract'].browse(post.get('project_id'))
             print("========================", contract)
-            # print("----------------------------", attachment)
+            print("----------------------------", attachment)
             file = post.get('attachment')
             attachment_id = request.env['ir.attachment'].sudo().create({
                 'name': post.get('attachment').filename,

@@ -1,0 +1,6 @@
+<odoo>
+    <menuitem id="contact_sale_menu"
+              name="Contact Sale"
+              parent="sale.menu_sale_config"
+              action="contact_sale_action_window"/>
+</odoo>
