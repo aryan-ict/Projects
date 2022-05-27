@@ -18,11 +18,7 @@ class ContactSale(models.Model):
 
     def progress_button(self):
         self.history_lines('progress')
-        disp_msg = """Contact : """ + self.contact_id.name + """
-        <br/>
-        Sale Order : """ + self.sale_order_id.name
-
-        self.message_post(body=disp_msg)
+        self.message_post(body=[self.contact_id.name, self.sale_order_id.name])
 
     def done_button(self):
         self.history_lines('done')
