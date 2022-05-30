@@ -2,12 +2,16 @@ from odoo import models, fields, api
 
 
 class ResPartner(models.Model):
+    """Inherited res.partner for Contact Sale."""
     _inherit = "res.partner"
     _description = "Model for Inheritance of Contact"
 
     contact_sale_count = fields.Integer(compute='compute_contact_sale')
 
     def compute_contact_sale(self):
+        """Function to count total number of records of particular
+        contact.
+        'return': Views based on condition."""
         for rec in self:
             domain = [('contact_id', '=', rec.id)]
             contact_sale = self.env['contact.sale'].search(domain)

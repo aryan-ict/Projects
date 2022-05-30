@@ -61,6 +61,8 @@
                         <field name="sale_order_id"/>
                         <field name="user_id" widget="many2one_avatar_user"/>
                         <field name="follow_ups"/>
+                        <field name="birth_date"/>
+                        <field name="age"/>
                     </group>
                     <notebook name="main_notebook">
                         <page string="Contact Sale History Lines" name="contact_sale_history_lines">

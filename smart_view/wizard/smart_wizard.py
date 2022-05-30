@@ -21,7 +21,6 @@ class SmartWizard(models.TransientModel):
         print("fields----\n", fields)
         print("res----\n", res)
         print("rec----\n", rec)
-
         res.update({
             'customer_id': rec.partner_id.id,
             'email': rec.partner_id.email,
@@ -35,10 +34,10 @@ class SmartWizard(models.TransientModel):
         context = self._context
         rental_type = self.env[context["active_model"]].browse(context["active_id"])
         rental_type.create({
-            'customer_id': self.partner_id.id,
+            'partner_id': self.customer_id.id,
             'email': self.email,
-            'sales_person': self.sales_person,
-            'sales_contact': self.sales_contact,
+            'user_id': self.sales_person,
+            'mobile': self.sales_contact,
             'payment_term_id': self.payment_term_id
         })
         # print("========================>", res)

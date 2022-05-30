@@ -9,7 +9,7 @@ class EmployeePortal(portal.CustomerPortal):
         """Function to get counts of records in Portal Menu
         of Contracts."""
         values = super(EmployeePortal, self)._prepare_home_portal_values(counters)
-        contract_count = request.env["hr.contract"].search_count(
+        contract_count = request.env['hr.contract'].search_count(
             [('employee_id', '=', request.env.user.employee_id.id)])
         values.update({
             'contract_count': contract_count
