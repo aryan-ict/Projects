@@ -3,42 +3,134 @@
     <!-- Sub-Template -->
     <template id="rental_template">
         <t t-foreach="docs" t-as="o">
-            <center>
-                <h1>Rental Management QWeb Report</h1>
-            </center>
             <div class="page">
-                <h2>DATA</h2>
-                <br/>
-                <br/>
-                <ul>
-                    <li>Name :
+                <div class="oe_structure"/>
+                <center>
+                    <span t-field="o.image_1920" t-options="{'widget': 'image'}"/>
+                    <h2 class="mt16">
                         <span t-field="o.name"/>
-                    </li>
-                    <li>Customer :
-                        <span t-field="o.partner_id"/>
-                    </li>
-                    <li>Rental type :
-                        <span t-field="o.rental_type_id"/>
-                    </li>
-                    <li>Rental Product :
-                        <span t-field="o.start_date"/>
-                    </li>
-                    <li>Start Date :
-                        <span t-field="o.end_date"/>
-                    </li>
-                    <li>End Date :
-                        <span t-field="o.rental_product"/>
-                    </li>
-                    <li>Price :
-                        <span t-field="o.price"/>
-                    </li>
-                    <li>Status:
-                        <span t-field="o.state"/>
-                    </li>
-                    <li>
-                        <img t-attf-src="'/web/image/rental.management/%s/image_1920' % id" alt="Image"/>
-                    </li>
-                </ul>
+                    </h2>
+                    <!--                    <img t-att-src="'/web/image/rental.management/%s/o.image_1920' % o.id" alt="Image"/>-->
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <table class="table table-sm o_main_table">
+                                <tr>
+                                    <td width="100%">
+                                        <table>
+                                            <tr>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <b>Name</b>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span>
+                                                        <strong>:</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span t-field="o.name"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <strong>Customer</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span>
+                                                        <strong>:</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span t-field="o.partner_id"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <strong>Rental Type</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span>
+                                                        <strong>:</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span t-field="o.rental_type_id"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <strong>Start Date</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span>
+                                                        <strong>:</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span t-field="o.start_date"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <strong>End Date</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span>
+                                                        <strong>:</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span t-field="o.end_date"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <strong>Rental Product</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span>
+                                                        <strong>:</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span t-field="o.rental_product"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <strong>Price</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span>
+                                                        <strong>:</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span t-field="o.price"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </center>
             </div>
         </t>
     </template>
@@ -46,8 +138,10 @@
     <!-- Main-Template -->
     <template id="rental_management.rental_main_template">
         <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="doc">
-                <t t-call="rental_management.rental_template"/>
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="rental_management.rental_template"/>
+                </t>
             </t>
         </t>
     </template>
