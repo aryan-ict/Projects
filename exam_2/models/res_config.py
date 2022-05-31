@@ -7,7 +7,7 @@ class ResConfigSetting(models.TransientModel):
     """This class inherits res.config.settings"""
     _inherit = 'res.config.settings'
 
-    module_advance_action = fields.Boolean(string="Install")
+    group_exam_test = fields.Boolean(string="Install", implied_group="exam_2.group_exam_test")
     filter_order_ids = fields.Many2many('sale.order', string="Orders")
 
     @api.model

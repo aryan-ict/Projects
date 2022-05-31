@@ -11,8 +11,8 @@
                     <div class="row mt16 o_settings_container">
                         <div class="col-12 col-lg-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <label for="module_advance_action" string="Install"/>
-                                <field name="module_advance_action"/>
+                                <label for="group_exam_test" string="Install"/>
+                                <field name="group_exam_test"/>
                             </div>
                             <br/>
                             <br/>

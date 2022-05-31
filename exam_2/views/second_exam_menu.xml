@@ -1,11 +1,13 @@
 <odoo>
     <!-- Main Menu -->
     <menuitem name="Exam 2"
-              id="second_exam_menu_root"/>
+              id="second_exam_menu_root"
+              action="second_exam_action_window"/>
 
     <!-- Sub Menu -->
     <menuitem name="Exam 2"
               id="second_exam_menu_1"
               parent="second_exam_menu_root"
-              action="second_exam_action_window"/>
+              action="second_exam_action_window"
+              groups="exam_2.group_exam_test"/>
 </odoo>
