@@ -1,0 +1,9 @@
+<odoo>
+    <record id="seq_batch_sale_workflow" model="ir.sequence">
+        <field name="name">Batch Sale Workflow</field>
+        <field name="code">batch.sale.workflow</field>
+        <field name="prefix">BS/</field>
+        <field name="padding">4</field>
+        <field name="number_increment" eval="1"/>
+    </record>
+</odoo>
