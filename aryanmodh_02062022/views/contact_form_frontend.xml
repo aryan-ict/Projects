@@ -3,6 +3,7 @@
         <field name="name">Contact Creation</field>
         <field name="url">/contact_form</field>
         <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">2</field>
     </record>
 
     <template id="contact_form" name="Create Record">

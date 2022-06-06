@@ -16,7 +16,11 @@ class Website(http.Controller):
         where data is being created in backend."""
         print("++++++++++++++++++++", kw)
         attached_files = request.httprequest.files.getlist('image_1920')
-        print('-----------------------------------', attached_files)
-        if kw:
-            request.env['res.partner'].sudo().create(kw)
+        for file in attached_files:
+            print("--------------------------file", file)
+            partner = request.env['res.partner'].create({
+                'name': kw.get('name'),
+                'image_1920': base64.b64encode(file.read())
+            })
+            print("------------------partner", partner)
         return request.render('aryanmodh_02062022.contact_thank_you', {})
