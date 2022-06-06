@@ -21,7 +21,8 @@ Created to perform exam related tasks.""",
     'data': [
         'security/ir.model.access.csv',
         'views/sale_order_views.xml',
-        'views/bulk_product_views.xml'
+        'views/bulk_product_views.xml',
+        'views/bulk_products_frontend.xml'
     ],
 
     "license": "LGPL-3"

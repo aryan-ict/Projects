@@ -1,0 +1,59 @@
+<odoo>
+     <record id="bulk_product_menu" model="website.menu">
+        <field name="name">Bulk Product</field>
+        <field name="url">/bulk_products</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+
+    <template id="bulk_products_list" name="Bulk Create Record">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br/>
+                    <center>
+                        <h2>Bulk Products List</h2>
+                    </center>
+                    <br/>
+                    <center>
+                        <table width="100%" class="table-striped table-bordered table-">
+                            <thead style="font-size:23px;">
+                                <tr>
+                                    <h6>
+                                        <b>
+                                            <th>Name</th>
+                                            <th>Master</th>
+                                            <th>Bulk Product Line</th>
+                                            <th>User</th>
+                                            <th>Email</th>
+                                        </b>
+                                    </h6>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="bulk_list" t-as="data">
+                                    <tr>
+                                        <td>
+                                            <span t-esc="data.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="data.master_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="data.bulk_product_ids.product_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="data.user_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="data.email"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </center>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
