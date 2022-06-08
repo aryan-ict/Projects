@@ -10,6 +10,7 @@ class BulkProduct(models.Model):
     bulk_product_ids = fields.One2many('bulk.product.line', 'bulk_id',  string='Bulk Product')
     user_id = fields.Many2one('res.partner', string='User')
     email = fields.Char(string='Email')
+    bulk_id = fields.Many2one('bulk.products', string='Bulk')
 
 
 class BulkProductLine(models.Model):

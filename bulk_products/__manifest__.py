@@ -25,5 +25,11 @@ Created to perform exam related tasks.""",
         'views/bulk_products_frontend.xml'
     ],
 
+    'assets': {
+        'web.assets_frontend': [
+            'bulk_products/static/src/css/bulk_frontend.css'
+        ]
+    },
+
     "license": "LGPL-3"
 }

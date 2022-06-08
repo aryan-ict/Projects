@@ -1,5 +1,5 @@
 <odoo>
-     <record id="bulk_product_menu" model="website.menu">
+    <record id="bulk_product_menu" model="website.menu">
         <field name="name">Bulk Product</field>
         <field name="url">/bulk_products</field>
         <field name="parent_id" ref="website.main_menu"/>
@@ -12,6 +12,7 @@
                     <br/>
                     <center>
                         <h2>Bulk Products List</h2>
+                        <a type="button" class="btn btn-primary" href="/bulk_products/bulk_create_form">Create</a>
                     </center>
                     <br/>
                     <center>
@@ -22,7 +23,6 @@
                                         <b>
                                             <th>Name</th>
                                             <th>Master</th>
-                                            <th>Bulk Product Line</th>
                                             <th>User</th>
                                             <th>Email</th>
                                         </b>
@@ -33,13 +33,12 @@
                                 <t t-foreach="bulk_list" t-as="data">
                                     <tr>
                                         <td>
-                                            <span t-esc="data.name"/>
+                                            <a t-attf-href="/bulk_products/details/{{slug(data)}}">
+                                                <span t-esc="data.name"/>
+                                            </a>
                                         </td>
                                         <td>
                                             <span t-esc="data.master_id.name"/>
-                                        </td>
-                                        <td>
-                                            <span t-esc="data.bulk_product_ids.product_id.name"/>
                                         </td>
                                         <td>
                                             <span t-esc="data.user_id.name"/>
@@ -52,6 +51,147 @@
                             </tbody>
                         </table>
                     </center>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="bulk_details" name="Bulk Product Details">
+        <title>
+            <t t-esc="details.name"/>
+        </title>
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <center>
+                        <h2>Contacts Details</h2>
+                        <a type="button" class="btn btn-primary" t-attf-href="/bulk_products/bulk_create_form/{{slug(details)}}">
+                            Edit
+                        </a>
+                    </center>
+                    <br/>
+                    <center>
+                        Name :
+                        <span t-esc="details.name"/>
+                        <br/>
+                        Master :
+                        <span t-esc="details.master_id.name"/>
+                        <br/>
+                        User :
+                        <span t-esc="details.user_id.name"/>
+                        <br/>
+                        Email :
+                        <span t-esc="details.email"/>
+                    </center>
+                    <h4>
+                        <b>Bulk Products Line :</b>
+                    </h4>
+                    <center>
+                        <table width="100%" class="table-striped table-bordered table-">
+                            <thead style="font-size:23px;">
+                                <tr>
+                                    <h6>
+                                        <b>
+                                            <th>Products</th>
+                                            <th>Description</th>
+                                            <th>Quantity</th>
+                                        </b>
+                                    </h6>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="bulk_line" t-as="rec">
+                                    <tr>
+                                        <td>
+                                            <span t-esc="rec.product_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="rec.description"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="rec.product_uom_qty"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </center>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="bulk_form" name="Referral Program">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <br/>
+                        <h2>
+                            Bulk Products Form
+                        </h2>
+                        <form role="form" t-attf-action="/bulk_products/bulk_create_form" method="POST" class="line-2">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <input type="hidden" name="bulk_id" t-att-value="(bulk) and bulk.id"/>
+                            <br/>
+                            <div class="form-group">
+                                <label for="name" class="control-label">Name</label>
+                                <br/>
+                                <input type="text" class="bulk_style" name="name"
+                                       t-att-value="(bulk) and bulk.name or ''" id="name"
+                                       placeholder="Enter Name" required="required"/>
+                                <div>
+                                    <label for="master_id" class="control-label">Master Product</label>
+                                    <br/>
+                                    <select class="m2o_style" name="master_id"
+                                            t-att-value="(bulk) and bulk.master_id or ''">
+                                        <t t-foreach="master" t-as="mas">
+                                            <option t-att-value="mas.id" t-esc="mas.name"/>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="user_id" class="control-label">Partner Name</label>
+                                    <br/>
+                                    <select class="m2o_style" name="user_id"
+                                            t-att-value="(bulk) and bulk.user_id or ''">
+                                        <t t-foreach="user" t-as="use">
+                                            <option t-att-value="use.id" t-esc="use.name"/>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="email" class="control-label">Email</label>
+                                    <br/>
+                                    <input type="email" class="bulk_style" name="email"
+                                           t-att-value="(bulk) and bulk.email or ''"
+                                           id="email"
+                                           required="required"/>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn_purple">SUBMIT</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="bulk_thank_you" name="Thank You">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <center>
+                            <h2>
+                                <b>
+                                    Thank You For Creating Contact
+                                </b>
+                            </h2>
+                        </center>
+                    </div>
                 </div>
             </div>
         </t>

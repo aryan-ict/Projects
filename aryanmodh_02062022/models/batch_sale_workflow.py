@@ -11,7 +11,7 @@ class BatchSaleWorkflow(models.Model):
     responsible_id = fields.Many2one('res.users', string='Responsible', tracking=True)
     operation_type = fields.Selection([('confirm', 'Confirm'), ('cancel', 'Cancel'), ('merge', 'Merge')],
                                       default='confirm', string='Operation Type')
-    partner_id = fields.Many2one('res.partner', string='Customer', required=True)
+    partner_id = fields.Many2one('res.partner', string='Customer')
     status = fields.Selection([('draft', 'Draft'), ('done', 'Done'), ('cancel', 'Cancel')], default='draft',
                               tracking=True)
     sale_order_ids = fields.Many2many('sale.order', 'sale_order_rel', 'batch_sale_id', 'sale_order_id',
@@ -30,7 +30,6 @@ class BatchSaleWorkflow(models.Model):
         added to order date field in sale order if the condition is true."""
         self.status = 'done'
         res = self.env['sale.order']
-
         if self.operation_type in 'confirm':
             self.sale_order_ids.write({
                 'date_order': self.operation_date
@@ -62,16 +61,15 @@ class BatchSaleWorkflow(models.Model):
         """Onchange function to get values based of on
         the given domain."""
         for rec in self:
-            if rec.operation_type:
-                if rec.operation_type in 'confirm':
-                    domain = [('state', 'in', ['draft', 'sent']), ('user_id', '=', rec.responsible_id.id)]
-                    return {'domain': {'sale_order_ids': domain}}
+            if rec.operation_type in 'confirm':
+                domain = [('state', 'in', ['draft', 'sent']), ('user_id', '=', rec.responsible_id.id)]
+                return {'domain': {'sale_order_ids': domain}}
 
-                elif rec.operation_type in 'cancel':
-                    domain = [('state', 'in', ['draft', 'sent', 'sale']), ('user_id', '=', rec.responsible_id.id)]
-                    return {'domain': {'sale_order_ids': domain}}
+            elif rec.operation_type in 'cancel':
+                domain = [('state', 'in', ['draft', 'sent', 'sale']), ('user_id', '=', rec.responsible_id.id)]
+                return {'domain': {'sale_order_ids': domain}}
 
-                elif rec.operation_type in 'merge':
-                    domain = [('state', 'in', ['draft', 'sent']), ('user_id', '=', rec.responsible_id.id),
-                              ('partner_id', '=', rec.partner_id.id)]
-                    return {'domain': {'sale_order_ids': domain}}
+            elif rec.operation_type in 'merge':
+                domain = [('state', 'in', ['draft', 'sent']), ('user_id', '=', rec.responsible_id.id),
+                          ('partner_id', '=', rec.partner_id.id)]
+                return {'domain': {'sale_order_ids': domain}}
