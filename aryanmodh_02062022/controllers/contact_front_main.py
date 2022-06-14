@@ -20,6 +20,8 @@ class Website(http.Controller):
             print("--------------------------file", file)
             partner = request.env['res.partner'].create({
                 'name': kw.get('name'),
+                'email': kw.get('email'),
+                'phone': kw.get('phone'),
                 'image_1920': base64.b64encode(file.read())
             })
             print("------------------partner", partner)

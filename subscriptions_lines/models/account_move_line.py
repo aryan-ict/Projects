@@ -6,7 +6,6 @@ class AccountMoveLine(models.Model):
     """This class is for fields inherited in Invoice Lines."""
     _inherit = 'account.move.line'
     _description = 'Invoice Lines'
-    _rec_name = 'name'
 
     delivery_add_id = fields.Many2one('res.partner', string="Delivery Address")
     vendor_id = fields.Many2one('res.partner', string="Vendor",

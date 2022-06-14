@@ -13,15 +13,14 @@ class Website(http.Controller):
     @http.route(['/bulk_products/details/<model("bulk.products"):bulk>'], type='http', auth='public', website=True)
     def bulk_details(self, bulk):
         print("----------------------bulk", bulk)
-        bulk_product_line = request.env['bulk.product.line'].search([])
-        return request.render("bulk_products.bulk_details", {'details': bulk,
-                                                             'bulk_line': bulk_product_line})
+        return request.render("bulk_products.bulk_details", {'details': bulk})
 
     @http.route(['/bulk_products/bulk_create_form', '/bulk_products/bulk_create_form/<model("bulk.products"):record>'],
                 type='http', auth='user', website=True)
     def bulk_form(self, record=None, **kw):
         master_id = request.env['product.template'].search([])
         user_id = request.env['res.partner'].search([])
+        product_id = request.env['product.product'].search([])
         print('\n\nbulk---------------', record, '\n\n')
         print('\n\nkw---------------', kw, '\n\n')
         if kw:
@@ -31,6 +30,7 @@ class Website(http.Controller):
                 'master_id': kw.get('master_id', False),
                 'user_id': kw.get('user_id', False),
                 'email': kw.get('email', False),
+                'bulk_product_ids': kw.get('bulk_product_ids.product_id', False)
             }
             if kw.get('bulk_id', False):
                 bulk_obj.browse(int(kw.get('bulk_id'))).write(data)
@@ -40,7 +40,8 @@ class Website(http.Controller):
         return request.render(
             "bulk_products.bulk_form", {'bulk': record,
                                         'master': master_id,
-                                        'user': user_id
+                                        'user': user_id,
+                                        'product': product_id
                                         })
 
     # @http.route('/bulk_create_form/thank_you', type='http', auth='user', website=True)

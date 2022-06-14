@@ -34,13 +34,11 @@ class BatchSaleWorkflow(models.Model):
             self.sale_order_ids.write({
                 'date_order': self.operation_date
             })
-            self.sale_order_ids.write({'state': "sale"})
+            self.sale_order_ids.action_confirm()
         elif self.operation_type in 'cancel':
-            self.sale_order_ids.write({'state': "cancel"})
+            self.sale_order_ids.action_cancel()
         elif self.operation_type in 'merge':
-            self.sale_order_ids.write({
-                'state': 'cancel',
-            })
+            self.sale_order_ids.action_cancel()
             res.create({
                 'partner_id': self.partner_id.id,
                 'order_line': self.sale_order_ids.order_line
@@ -63,13 +61,11 @@ class BatchSaleWorkflow(models.Model):
         for rec in self:
             if rec.operation_type in 'confirm':
                 domain = [('state', 'in', ['draft', 'sent']), ('user_id', '=', rec.responsible_id.id)]
-                return {'domain': {'sale_order_ids': domain}}
 
             elif rec.operation_type in 'cancel':
                 domain = [('state', 'in', ['draft', 'sent', 'sale']), ('user_id', '=', rec.responsible_id.id)]
-                return {'domain': {'sale_order_ids': domain}}
 
             elif rec.operation_type in 'merge':
                 domain = [('state', 'in', ['draft', 'sent']), ('user_id', '=', rec.responsible_id.id),
                           ('partner_id', '=', rec.partner_id.id)]
-                return {'domain': {'sale_order_ids': domain}}
+        return {'domain': {'sale_order_ids': domain}}
