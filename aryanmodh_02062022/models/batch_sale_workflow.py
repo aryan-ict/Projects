@@ -21,8 +21,13 @@ class BatchSaleWorkflow(models.Model):
     @api.model
     def create(self, vals):
         """Function to create sequential name, using ir.sequence."""
+        print("-------------------------", vals)
         vals['name'] = self.env['ir.sequence'].next_by_code('batch.sale.workflow')
         return super(BatchSaleWorkflow, self).create(vals)
+
+    def write(self, vals):
+        print("==========================", vals)
+        return super(BatchSaleWorkflow, self).write(vals)
 
     def proceed_ops_button(self):
         """Function for proceed operation button,
@@ -38,6 +43,7 @@ class BatchSaleWorkflow(models.Model):
         elif self.operation_type in 'cancel':
             self.sale_order_ids.action_cancel()
         elif self.operation_type in 'merge':
+            print("------------------------order_line", self.sale_order_ids.order_line)
             self.sale_order_ids.action_cancel()
             res.create({
                 'partner_id': self.partner_id.id,

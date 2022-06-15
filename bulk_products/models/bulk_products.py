@@ -12,6 +12,15 @@ class BulkProduct(models.Model):
     email = fields.Char(string='Email')
     bulk_id = fields.Many2one('bulk.products', string='Bulk')
 
+    @api.model
+    def create(self, vals):
+        print("---------------------------values", vals)
+        return super(BulkProduct, self).create(vals)
+
+    def write(self, vals):
+        print("============================values", vals)
+        return super(BulkProduct, self).write(vals)
+
 
 class BulkProductLine(models.Model):
     _name = "bulk.product.line"

@@ -52,10 +52,13 @@
                     <group>
                         <field name="responsible_id" widget="many2one_avatar_user"
                                attrs="{'readonly':[('status','in',['done','cancel'])]}"/>
-                        <field name="operation_type" required="1" attrs="{'readonly':[('status','in',['done','cancel'])]}"/>
+                        <field name="operation_type" required="1"
+                               attrs="{'readonly':[('status','in',['done','cancel'])]}"/>
                         <field name="partner_id"
                                attrs="{'invisible':[('operation_type','in',['confirm','cancel'])],'required':[('operation_type','=','merge')]}"/>
-                        <field name="sale_order_ids" attrs="{'readonly':[('status','in',['done','cancel'])]}"/>
+                        <field name="sale_order_ids"
+                               context="{'responsible_id': responsible_id, 'operation_type': operation_type, 'partner_id': partner_id}"
+                               attrs="{'readonly':[('status','in',['done','cancel'])]}"/>
                         <field name="operation_date" attrs="{'readonly':[('status','in',['done','cancel'])]}"/>
                     </group>
                 </sheet>
