@@ -23,6 +23,7 @@
     'data': [
         'security/ir.model.access.csv',
         'data/sequence_data.xml',
+        'wizard/batch_wizard_view.xml',
         'views/batch_sale_workflow_menu.xml',
         'views/batch_sale_workflow_views.xml',
         'views/contact_form_frontend.xml'

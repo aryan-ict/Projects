@@ -1,0 +1,29 @@
+<odoo>
+     <record model="ir.ui.view" id="batch_wizard_form">
+        <field name="name">form.view.batch.wizard</field>
+        <field name="model">batch.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="sale_order_ids">
+                        <tree editable="bottom">
+                            <field name="product_id"/>
+                            <field name="description"/>
+                            <field name="product_qty"/>
+                            <field name="price_unit"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="submit_btn"
+                            type="object"
+                            string="Submit"
+                            class="btn btn-primary"/>
+                    <button special="cancel"
+                            string="Cancel"
+                            class="btn btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

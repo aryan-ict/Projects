@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 import datetime
 
 
@@ -35,20 +35,28 @@ class BatchSaleWorkflow(models.Model):
         added to order date field in sale order if the condition is true."""
         self.status = 'done'
         res = self.env['sale.order']
+        view_id = self.env.ref('aryanmodh_02062022.batch_wizard_form').id
+
         if self.operation_type in 'confirm':
             self.sale_order_ids.write({
                 'date_order': self.operation_date
             })
             self.sale_order_ids.action_confirm()
         elif self.operation_type in 'cancel':
+            pass
             self.sale_order_ids.action_cancel()
         elif self.operation_type in 'merge':
             print("------------------------order_line", self.sale_order_ids.order_line)
             self.sale_order_ids.action_cancel()
-            res.create({
-                'partner_id': self.partner_id.id,
-                'order_line': self.sale_order_ids.order_line
-            })
+            return {
+                'type': 'ir.actions.act_window',
+                'name': _('Batch Wizard Window'),
+                'view_mode': 'form',
+                'res_model': 'batch.wizard',
+                'view_id': view_id,
+                'target': 'new',
+            }
+
 
     def cancel_button(self):
         """Function for cancel button,
@@ -59,19 +67,3 @@ class BatchSaleWorkflow(models.Model):
         """Function for draft button,
         On the click of button state will change to draft."""
         self.status = 'draft'
-
-    @api.onchange('responsible_id', 'operation_type', 'partner_id')
-    def _onchange_operation_type(self):
-        """Onchange function to get values based of on
-        the given domain."""
-        for rec in self:
-            if rec.operation_type in 'confirm':
-                domain = [('state', 'in', ['draft', 'sent']), ('user_id', '=', rec.responsible_id.id)]
-
-            elif rec.operation_type in 'cancel':
-                domain = [('state', 'in', ['draft', 'sent', 'sale']), ('user_id', '=', rec.responsible_id.id)]
-
-            elif rec.operation_type in 'merge':
-                domain = [('state', 'in', ['draft', 'sent']), ('user_id', '=', rec.responsible_id.id),
-                          ('partner_id', '=', rec.partner_id.id)]
-        return {'domain': {'sale_order_ids': domain}}
