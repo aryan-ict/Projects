@@ -17,6 +17,8 @@ class BatchSaleWorkflow(models.Model):
     sale_order_ids = fields.Many2many('sale.order', 'sale_order_rel', 'batch_sale_id', 'sale_order_id',
                                       string='Sale Order')
     operation_date = fields.Datetime('Operation Date')
+    category_id = fields.Many2many('res.partner.category', string="Tag", related="partner_id.category_id",
+                                   readonly=False)
 
     @api.model
     def create(self, vals):
@@ -56,7 +58,6 @@ class BatchSaleWorkflow(models.Model):
                 'view_id': view_id,
                 'target': 'new',
             }
-
 
     def cancel_button(self):
         """Function for cancel button,

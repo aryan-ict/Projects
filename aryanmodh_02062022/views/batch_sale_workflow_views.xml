@@ -56,6 +56,7 @@
                                attrs="{'readonly':[('status','in',['done','cancel'])]}"/>
                         <field name="partner_id"
                                attrs="{'invisible':[('operation_type','in',['confirm','cancel'])],'required':[('operation_type','=','merge')]}"/>
+                        <field name="category_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
                         <field name="sale_order_ids"
                                context="{'responsible_id': responsible_id, 'operation_type': operation_type, 'partner_id': partner_id}"
                                attrs="{'readonly':[('status','in',['done','cancel'])]}"/>
