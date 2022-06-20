@@ -1,0 +1,61 @@
+<odoo>
+    <record model="ir.ui.view" id="promotional_discount_tree">
+        <field name="name">promotional.discount.tree.view</field>
+        <field name="model">promotional.discount</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="discount_type"/>
+                <field name="name"/>
+                <field name="discount"/>
+                <field name="minimum_order_amount"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="promotional_discount_form">
+        <field name="name">promotional.discount.form.view</field>
+        <field name="model">promotional.discount</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="discount_type"/>
+                            <field name="name"/>
+                            <field name="currency_id" invisible="1"/>
+                            <label for="discount"/>
+                            <div>
+                                <field name="fixed_discount" widget="monetary" options="{'currency_field': 'currency_id'}"
+                                       attrs="{'required': [('discount_type', '=', 'fixed')], 'invisible': [('discount_type', '!=','fixed')]}"
+                                       class="oe_inline"/>
+                                <field name="discount" class="oe_inline"
+                                       attrs="{'required': [('discount_type', '=', 'percentage')], 'invisible': [('discount_type', '!=', 'percentage')]}"/>
+                                <span attrs="{'invisible': [('discount_type', '!=', 'percentage')]}"
+                                      class="oe_inline">%</span>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="minimum_order_amount"/>
+                            <field name="start_date" widget="date"/>
+                            <field name="end_date" widget="date"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="promotional_discount_action_window">
+        <field name="name">Promotional Discount</field>
+        <field name="res_model">promotional.discount</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="promotional_discount_tree"/>
+    </record>
+
+    <menuitem id="promotional_discount_menu_root" name="Promotional Discount"/>
+
+    <menuitem id="promotional_discount_menu_1" name="Promotional Discount"
+              parent="promotional_discount_menu_root" action="promotional_discount_action_window"/>
+</odoo>

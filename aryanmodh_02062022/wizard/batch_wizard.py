@@ -39,7 +39,7 @@ class BatchWizard(models.TransientModel):
         print("--------------------------Hello World", new_order_line)
 
         for rec in self.env['batch.sale.workflow'].browse(self.env.context.get('active_ids')):
-            print("-------------------parnter", rec)
+            print("-------------------partner", rec)
             self.env['sale.order'].create({
                 'partner_id': rec.partner_id.id,
                 'order_line': new_order_line
