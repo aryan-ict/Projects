@@ -12,7 +12,7 @@ class PromotionalDiscount(models.Model):
     minimum_order_amount = fields.Integer(string="Minimum Order Amount", default="100")
     start_date = fields.Datetime('Start Date')
     end_date = fields.Datetime('End Date')
-    fixed_discount = fields.Monetary('Discount Type (Fixed)')
+    fixed_discount = fields.Monetary('Fixed Amount')
     currency_id = fields.Many2one('res.currency', default=20)
 
     _sql_constraints = [

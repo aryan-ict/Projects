@@ -20,7 +20,11 @@
     ],
 
     'data': [
+        'data/product_discount.xml',
         'security/ir.model.access.csv',
+        'security/security.xml',
+        'views/res_config_views.xml',
+        'views/sale_order_views.xml',
         'views/promotional_discount_views.xml'
     ],
 }

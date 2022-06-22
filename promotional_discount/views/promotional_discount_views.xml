@@ -4,9 +4,10 @@
         <field name="model">promotional.discount</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="discount_type"/>
                 <field name="name"/>
-                <field name="discount"/>
+                <field name="discount_type"/>
+                <field name="discount" string="Percentage Discount"/>
+                <field name="fixed_discount"/>
                 <field name="minimum_order_amount"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
