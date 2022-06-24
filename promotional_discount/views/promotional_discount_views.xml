@@ -9,8 +9,8 @@
                 <field name="discount" string="Percentage Discount"/>
                 <field name="fixed_discount"/>
                 <field name="minimum_order_amount"/>
-                <field name="start_date"/>
-                <field name="end_date"/>
+                <field name="start_date" widget="date"/>
+                <field name="end_date" widget="date"/>
             </tree>
         </field>
     </record>
@@ -23,8 +23,8 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="discount_type"/>
                             <field name="name"/>
+                            <field name="discount_type"/>
                             <field name="currency_id" invisible="1"/>
                             <label for="discount"/>
                             <div>
