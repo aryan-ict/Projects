@@ -9,8 +9,12 @@
                         name="apply_promotional_discount"
                         type="object"
                         class="btn-primary"
-                        groups="promotional_discount.group_promotional_discount"/>
+                        groups="promotional_discount.group_promotional_discount"
+                        attrs="{'invisible':[('discount_bool','=',False)]}"/>
             </header>
+            <xpath expr="//field[@name='validity_date']" position="after">
+                <field name="discount_bool" invisible="1"/>
+            </xpath>
         </field>
     </record>
 </odoo>
