@@ -1,0 +1,33 @@
+<odoo>
+    <record model="ir.ui.view" id="credit_limit_tree">
+        <field name="name">credit.limit.tree.view</field>
+        <field name="model">credit.limit</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+     <record model="ir.ui.view" id="credit_limit_form">
+        <field name="name">credit.limit.form.view</field>
+        <field name="model">credit.limit</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="credit_limit_action_window">
+        <field name="name">Credit Limit</field>
+        <field name="res_model">credit.limit</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="credit_limit_tree"/>
+    </record>
+
+    <menuitem id="credit_limit_menu_root" name="Credit Limit"/>
+
+    <menuitem id="credit_limit_menu_1" name="Credit Limit"
+              parent="credit_limit_menu_root" action="credit_limit_action_window"/>
+</odoo>
