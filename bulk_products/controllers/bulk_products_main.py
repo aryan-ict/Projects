@@ -30,7 +30,6 @@ class Website(http.Controller):
                 'master_id': kw.get('master_id', False),
                 'user_id': kw.get('user_id', False),
                 'email': kw.get('email', False),
-                'bulk_product_ids': kw.get('bulk_product_ids.product_id', False)
             }
             if kw.get('bulk_id', False):
                 bulk_obj.browse(int(kw.get('bulk_id'))).write(data)

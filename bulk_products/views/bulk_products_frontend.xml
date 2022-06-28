@@ -144,20 +144,22 @@
                                 <div>
                                     <label for="master_id" class="control-label">Master Product</label>
                                     <br/>
-                                    <select class="m2o_style" name="master_id"
-                                            t-att-value="(bulk) and bulk.master_id or ''">
+                                    <select id="master_id" class="m2o_style" name="master_id">
                                         <t t-foreach="master" t-as="mas">
-                                            <option t-att-value="mas.id" t-esc="mas.name"/>
+                                            <option t-att-value="mas.id"
+                                                    t-att-selected="mas.id == bulk.master_id"
+                                                    t-esc="mas.name"/>
                                         </t>
                                     </select>
                                 </div>
                                 <div>
                                     <label for="user_id" class="control-label">Partner Name</label>
                                     <br/>
-                                    <select class="m2o_style" name="user_id"
-                                            t-att-value="(bulk) and bulk.user_id or ''">
+                                    <select id="user_id" class="m2o_style" name="user_id">
                                         <t t-foreach="user" t-as="use">
-                                            <option t-att-value="use.id" t-esc="use.name"/>
+                                            <option t-att-value="use.id"
+                                                    t-att-selected="use.id == bulk.user_id"
+                                                    t-esc="use.name"/>
                                         </t>
                                     </select>
                                 </div>
@@ -168,31 +170,6 @@
                                            t-att-value="(bulk) and bulk.email or ''"
                                            id="email"
                                            required="required"/>
-                                </div>
-                                <div>
-                                    <table width="100%" class="table-striped table-bordered table-">
-                                        <thead style="font-size:23px;">
-                                            <tr>
-                                                <h6>
-                                                    <b>
-                                                        <th>Products</th>
-                                                        <th>Description</th>
-                                                        <th>Quantity</th>
-                                                    </b>
-                                                </h6>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <td>
-                                                <select class="m2oline_style" name="bulk_product_ids.product_id"
-                                                        t-att-value="(bulk) and bulk.bulk_product_ids.product_id or ''">
-                                                    <t t-foreach="product" t-as="pro">
-                                                        <option t-att-value="pro.id" t-esc="pro.name"/>
-                                                    </t>
-                                                </select>
-                                            </td>
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
                             <div>
