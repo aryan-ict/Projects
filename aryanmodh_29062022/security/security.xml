@@ -1,0 +1,6 @@
+<odoo>
+    <record id="group_aryanmodh_29062022" model="res.groups">
+        <field name="name">Exam2</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+</odoo>
