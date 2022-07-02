@@ -49,6 +49,9 @@
                     <field name="state"
                            widget="statusbar"
                            options="{'clickable':'True'}"/>
+                    <button name="product_button"
+                            string="Product"
+                            type="object"/>
                 </header>
                 <sheet>
                     <group>

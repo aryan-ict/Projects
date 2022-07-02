@@ -33,3 +33,8 @@ class RentalManagement(models.Model):
         for rec in self:
             print("rec-----", rec.rental_type_id.id)
             return {'domain': {'rental_product': [('rental_type_id', '=', rec.rental_type_id.id)]}}
+
+    def product_button(self):
+        pro = self.env['product.product'].search([('detailed_type', '=', 'service'), ('standard_price', '>', 20)],
+                                                 order='create_date', limit=10)
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~products", pro)

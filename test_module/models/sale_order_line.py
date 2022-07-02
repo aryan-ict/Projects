@@ -26,12 +26,3 @@ class SaleOrderLine(models.Model):
             if line.product_uom_qty and line.product_length and line.price_unit:
                 line.price_subtotal = line.product_uom_qty * line.product_length * line.price_unit
         return res
-
-    def _prepare_invoice_line(self, vals):
-        print("---------------------vals", vals)
-        res = super(SaleOrderLine, self)._prepare_invoice_line(vals)
-        res.update({
-            'product_length': self.product_length,
-            'product_total_length': self.product_total_length
-        })
-        return res

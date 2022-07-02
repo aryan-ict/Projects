@@ -31,6 +31,15 @@ class SaleOrder(models.Model):
                                 })
                 print("--------------------------new_lines", new_lines)
 
+    def _prepare_invoice_line(self, order_line):
+        print("---------------------vals", order_line)
+        res = super(SaleOrderLine, self)._prepare_invoice_line(order_line)
+        res.update({
+            'product_length': order_line.product_length,
+            'product_total_length': order_line.product_total_length
+        })
+        return res
+
         # elif self.product_id in self.order_line.product_id:
         #     for rec in self.order_line:
         #         print("---------------------------rec", rec)
