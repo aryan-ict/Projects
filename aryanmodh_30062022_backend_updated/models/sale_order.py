@@ -27,30 +27,6 @@ class SaleOrder(models.Model):
                 self.order_line = new_lines  # assigning the list to order line.
             for rec in self.order_line:
                 if self.product_id in rec.product_id:
-                    self.write({'order_line': [(1, rec.id, {'product_uom_qty': self.qty})]
+                    self.write({'order_line': [(1, rec.id, {'product_uom_qty': self.qty})]  # Here it will keep link of existing records and will make changes in selected record
                                 })
                 print("--------------------------new_lines", new_lines)
-
-    def _prepare_invoice_line(self, order_line):
-        print("---------------------vals", order_line)
-        res = super(SaleOrderLine, self)._prepare_invoice_line(order_line)
-        res.update({
-            'product_length': order_line.product_length,
-            'product_total_length': order_line.product_total_length
-        })
-        return res
-
-        # elif self.product_id in self.order_line.product_id:
-        #     for rec in self.order_line:
-        #         print("---------------------------rec", rec)
-        #         if self.product_id in rec.product_id:
-        #             self.update((1, rec.id, {'order_line': {
-        #                 'product_uom_qty': self.qty
-        #             }}))
-    #     for res in self.product_id:
-    #         if rec.order_line.product_id.id == res.product_id.id:
-    #             self.order_line.product_uom_qty = rec.qty
-    # if rec.product_id in rec.order_line.product_id:
-    #     self.write({
-    #         'order_line': {'product_uom_qty': rec.qty}
-    #     })

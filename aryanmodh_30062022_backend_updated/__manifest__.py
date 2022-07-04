@@ -10,7 +10,7 @@
     'author': 'Aryan Modh',
     'website': 'https://www.aktivsoftware.com/',
     'category': 'Sales/Sales',
-    'version': '15.0.1.0.0',
+    'version': '15.0.2.0.0',
     'application': True,
     'auto_install': False,
 
