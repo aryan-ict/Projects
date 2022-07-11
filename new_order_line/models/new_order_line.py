@@ -9,5 +9,6 @@ class NewOrderLine(models.Model):
     name = fields.Text(string="Description")
     product_uom_qty = fields.Float(string="Quantity")
     price_unit = fields.Float(string="Unit Price")
-    sale_order_id = fields.Many2one('sale.order', ondelete='cascade')
+    sale_order_id = fields.Many2one('sale.order')
     price_subtotal = fields.Float(string="Subtotal")
+    order_line_id = fields.Many2one('sale.order.line', string='Order Line')
