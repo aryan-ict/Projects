@@ -4,6 +4,12 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//form//header//button[@name='action_draft']" position="after">
+                <button name="merge_sale_order_line"
+                        type="object"
+                        string="Merge"
+                        class="btn btn-primary"/>
+            </xpath>
             <xpath expr="//page/field[@name='order_line']/.." position="after">
                 <page string="New Order Line" name="new_order_line">
                     <field name="new_order_line_ids">
