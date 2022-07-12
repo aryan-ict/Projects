@@ -35,10 +35,11 @@ class SaleOrderLine(models.Model):
     _description = "Sale Order Line"
 
     def unlink(self):
-        """Unlink fucntion to unlink the selected record based on Sale Order Line,
+        """Unlink function to unlink the selected record based on Sale Order Line,
         When record is deleted from Sale Order Line then it will be deleted from
         New Order Line."""
-        rec = self.env['new.order.line'].search([('order_line_id', '=', self.id)])
-        res = super(SaleOrderLine, self).unlink()
-        rec.unlink()
-        return res
+        for vals in self:
+            rec = self.env['new.order.line'].search([('order_line_id', '=', vals.id)])  # Here it will search for records in new order line whose order_line_id = to self.id
+            print("-----------------rec vals : ", vals)
+            rec.unlink()
+        return super(SaleOrderLine, self).unlink()

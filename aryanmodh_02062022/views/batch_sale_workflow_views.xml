@@ -93,4 +93,16 @@
         <field name="view_mode">tree,form,search</field>
         <field name="view_id" ref="batch_sale_workflow_list"/>
     </record>
+
+    <!-- Main Menu -->
+
+    <menuitem id="batch_sale_menu_root"
+              name="Batch Sale"/>
+
+    <!-- Sub Menu -->
+
+    <menuitem id="batch_sale_workflow_menu_1"
+              name="Batch Sale Workflow"
+              parent="batch_sale_menu_root"
+              action="batch_sale_workflow_action_window"/>
 </odoo>

@@ -50,7 +50,7 @@ class BatchSaleWorkflow(models.Model):
         elif self.operation_type in 'merge':
             print("------------------------order_line", self.sale_order_ids.order_line)
             self.sale_order_ids.action_cancel()
-            return {
+            return {                                   # This will return wizard when operation type is in merge.
                 'type': 'ir.actions.act_window',
                 'name': _('Batch Wizard Window'),
                 'view_mode': 'form',
