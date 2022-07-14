@@ -1,4 +1,5 @@
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 
 class SaleOrder(models.Model):
@@ -7,49 +8,57 @@ class SaleOrder(models.Model):
 
     new_order_line_ids = fields.One2many('new.order.line', 'sale_order_id')
 
-    # def write(self, vals):
-    #     """Override write function which will add Sale Order Line
-    #     into a new One2many field name New Order Line."""
-    #     res = super(SaleOrder, self).write(vals)
-    #     self.merge_sale_order_line()
-    #     return res
-    #     for rec in self.order_line:
-    #         if rec not in self.new_order_line_ids.order_line_id:
-    #             self.env['new.order.line'].create({
-    #                 'order_line_id': rec.id,
-    #                 'product_id': rec.product_id.id,
-    #                 'name': rec.name,
-    #                 'product_uom_qty': rec.product_id.id,
-    #                 'price_unit': rec.price_unit,
-    #                 'price_subtotal': rec.price_subtotal,
-    #                 'sale_order_id': self.id
-    #             })
-    #     return res
+    @api.model
+    def create(self, vals):
+        res = super(SaleOrder, self).create(vals)
+        res.merge_sale_order_line()
+        return res
+
+    def write(self, vals):
+        """Override write function which will add Sale Order Line
+        into a new One2many field name New Order Line."""
+        res = super(SaleOrder, self).write(vals)
+        self.merge_sale_order_line()
+        return res
 
     def merge_sale_order_line(self):
-        for rec in self.order_line:
-            if rec.id in self.order_line.ids:
-                line_ids = self.order_line.mapped(lambda m: m.product_id.id)
-                # new_line_ids = self.new_order_line_ids.filtered(lambda m: m.product_id.id == rec.product_id.id)
-                # print("===============New Line Ids", new_line_ids)
-                print("---------------Line Ids : ", line_ids)
-            #     quantity = 0
-            #     for qty in line_ids:
-            #         print("--------------Quantity : ", qty)
-            #         quantity += qty.product_uom_qty
-            #         subtotal = qty.price_unit * quantity
-            #         print("______________Product QTY : ", quantity)
-            #
-            if rec not in self.new_order_line_ids.order_line_id:
-                self.env['new.order.line'].create({
-                    'product_id': line_ids[0],
-                    'name': rec.name,
-                    'product_uom_qty': rec.product_uom_qty,
-                    'price_unit': rec.price_unit,
-                    'price_subtotal': rec.price_subtotal,
-                    'sale_order_id': self.id
+        for rec in self.order_line.mapped("product_id"):
+            line_ids = self.order_line.filtered(lambda m: m.product_id.id == rec.id)
+            price = line_ids.mapped("price_unit")
+            new_line = []
+            for res in line_ids:
+                if res.price_unit != price[0]:
+                    raise UserError('Unit Price Must be Same.')
+                else:
+                    pass
+            quantity = line_ids.mapped("product_uom_qty")
+            subtotal = line_ids.mapped("price_subtotal")
+            print("---------------rec", rec)
+            print("---------------line_ids", line_ids)
+            print("---------------quantity", sum(quantity))
+            print("---------------price_unit", price)
+            print("---------------subtotal", subtotal)
+            new_line.append((0, 0, {
+                'product_id': rec.id,
+                'name': rec.name,
+                'product_uom_qty': sum(quantity),
+                'price_unit': price[0],
+                'price_subtotal': sum(subtotal)
+            }))
+            if rec not in self.new_order_line_ids.product_id:
+                self.write({
+                    'new_order_line_ids': new_line
                 })
-                # new_line_ids[:-1].unlink()
+                print("-------------With Context", self._context)
+            # elif rec in self.new_order_line_ids.product_id:
+            #     for line in self.env['new.order.line']:
+            #         print("---------------line", line)
+            #         self.write({
+            #             'new_order_line_ids': [(1, line.id, {
+            #                 'product_uom_qty': sum(quantity),
+            #                 'price_subtotal': sum(subtotal)
+            #             })]
+            #         })
 
 
 class SaleOrderLine(models.Model):
@@ -60,9 +69,12 @@ class SaleOrderLine(models.Model):
         """Unlink function to unlink the selected record based on Sale Order Line,
         When record is deleted from Sale Order Line then it will be deleted from
         New Order Line."""
-        for vals in self:
-            rec = self.env['new.order.line'].search([('order_line_id', '=',
-                                                      vals.id)])  # Here it will search for records in new order line whose order_line_id = to self.id
+        for vals in self.mapped("product_id"):
+            rec = self.filtered(lambda m: m.product_id.id == vals.id)
+            new_line_id = self.env['new.order.line'].filtered(lambda x: x.product_id.id == vals.id)
+            print("-----------------new_line_id", new_line_id)
             print("-----------------rec vals : ", vals)
-            rec.unlink()
+            print("-----------------rec", rec)
+            # print("-----------------With Context", self.with_context(printed=True))
+            # rec.unlink()
         return super(SaleOrderLine, self).unlink()
