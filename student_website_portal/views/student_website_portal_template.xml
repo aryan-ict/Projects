@@ -1,0 +1,96 @@
+<odoo>
+    <!-- Student List Page -->
+    <template id="student_list_page" name="Student List">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+
+                <a type="button" class="btn btn-primary"
+                   style="color: white;" onlcick="">
+                    Create
+                </a>
+            </t>
+            <br/>
+            <center>
+                <table class="table rounded mb-0 bg-white o_portal_my_doc_table">
+                    <thead style="font-size:23px;">
+                        <tr>
+                            <h6>
+                                <b>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Birth Date</th>
+                                    <th>Email</th>
+                                    <th>Allocated Teacher</th>
+                                </b>
+                            </h6>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="student_list" t-as="rec">
+                            <tr>
+                                <td>
+                                    <a t-attf-href="/my/students/details/{{slug(rec)}}">
+                                        <span t-esc="rec.name"/>
+                                    </a>
+                                </td>
+                                <td>
+                                    <span t-esc="rec.phone"/>
+                                </td>
+                                <td>
+                                    <span t-esc="rec.birth_date"/>
+                                </td>
+                                <td>
+                                    <span t-esc="rec.email"/>
+                                </td>
+                                <td>
+                                    <span t-esc="rec.allocated_id.name"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </center>
+        </t>
+    </template>
+
+    <!-- Portal Count & Menu -->
+    <template id="portal_student_website"
+              inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]"
+               position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">My Students</t>
+                <t t-set="url" t-value="'/my/students'"/>
+                <t t-set="placeholder_count" t-value="'student_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Student Details Page -->
+    <template id="student_portal_content"
+              name="Student Website Portal Content">
+        <title>
+            <t t-esc="detailed_content.name"/>
+        </title>
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <center>
+                        <h2>Student Details</h2>
+                        <a type="button" class="btn btn-primary" style="color: white;">
+                            Edit
+                        </a>
+                    </center>
+                    <div>
+                        <span><b>Name</b> : <t t-esc="detailed_content.name"/></span>
+                    </div>
+                    <div>
+                        <span><b>Address</b> : <t t-esc="detailed_content.street"/><br/><t t-esc="detailed_content.street2"/></span>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
