@@ -1,5 +1,6 @@
 from odoo import http, _
 from odoo.http import request
+import json
 from odoo.addons.portal.controllers import portal
 
 
@@ -21,7 +22,8 @@ class Website(http.Controller):
         })
 
     @http.route('/my/student/create', type='http', auth='user', website=True)
-    def create_student(self):
+    def create_student(self, **args):
+        print("-------------Edit", args)
         state_ids = request.env['res.country.state'].search([])
         country_ids = request.env['res.country'].search([])
         teacher_ids = request.env['res.users'].search([])
@@ -30,6 +32,28 @@ class Website(http.Controller):
             'country_id': country_ids,
             'teacher_id': teacher_ids
         })
+
+    @http.route('/thankyou', type='json', auth='user')
+    def thankyou(self, **args):
+        print("----------------Args", args)
+        country = args.get('country_id')
+        print("----------------Args", country)
+        state_ids = request.env['res.country.state'].search([('country_id', '=', int(country))])
+        print("--------------State", state_ids)
+        if args:
+            request.env['student.website.portal'].create({
+                'name': args.get('name'),
+                'phone': args.get('phone'),
+                'birth_date': args.get('birth_date'),
+                'email': args.get('email'),
+                'allocated_id': args.get('allocated_id'),
+                'street': args.get('street'),
+                'street2': args.get('street2'),
+                'city': args.get('city'),
+                'zip': args.get('zip'),
+                'country': args.get('country_id'),
+            })
+        return state_ids
 
 
 class StudentCustomerPortal(portal.CustomerPortal):

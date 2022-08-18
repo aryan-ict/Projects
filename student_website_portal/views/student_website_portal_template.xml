@@ -5,26 +5,24 @@
             <t t-set="breadcrumbs_searchbar" t-value="True"/>
 
             <t t-call="portal.portal_searchbar">
-
-                <a type="button" class="btn btn-primary"
-                   style="color: white;" onlcick="">
+                <a t-attf-href="/my/student/create" type="button"
+                   class="btn btn-primary"
+                   style="color: white;">
                     Create
                 </a>
             </t>
             <br/>
             <center>
                 <table class="table rounded mb-0 bg-white o_portal_my_doc_table">
-                    <thead style="font-size:23px;">
+                    <thead style="font-size:18px;">
                         <tr>
-                            <h6>
-                                <b>
-                                    <th>Name</th>
-                                    <th>Phone</th>
-                                    <th>Birth Date</th>
-                                    <th>Email</th>
-                                    <th>Allocated Teacher</th>
-                                </b>
-                            </h6>
+                            <b>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Birth Date</th>
+                                <th>Email</th>
+                                <th>Allocated Teacher</th>
+                            </b>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,7 +53,7 @@
         </t>
     </template>
 
-    <!-- Portal Count & Menu -->
+    <!-- Portal Menu & Count -->
     <template id="portal_student_website"
               inherit_id="portal.portal_my_home">
         <xpath expr="//div[hasclass('o_portal_docs')]"
@@ -74,20 +72,233 @@
         <title>
             <t t-esc="detailed_content.name"/>
         </title>
-        <t t-call="website.layout">
+        <t t-call="portal.portal_layout">
             <div class="oe_structure">
                 <div class="container">
-                    <center>
-                        <h2>Student Details</h2>
-                        <a type="button" class="btn btn-primary" style="color: white;">
+                    <t t-set="breadcrumbs_searchbar" t-value="True"/>
+                    <t t-call="portal.portal_searchbar">
+                        <h3 style="margin-right: 425px;">Student
+                            Details
+                        </h3>
+                        <a type="button" class="btn btn-primary"
+                           t-attf-href="/my/student/create"
+                           style="color: white;">
                             Edit
                         </a>
-                    </center>
-                    <div>
-                        <span><b>Name</b> : <t t-esc="detailed_content.name"/></span>
+                    </t>
+                    <div class="row">
+                        <div class="col-6">
+                            <span>
+                                <b>Name</b>
+                                :
+                                <t t-esc="detailed_content.name"/>
+                            </span>
+                            <br/>
+                            <b>Address</b>
+                            :
+                            <span t-esc="detailed_content.street"/>,
+                            <br/>
+                            <span style="margin-left: 71px;"
+                                  t-esc="detailed_content.street2"/>,
+                            <br/>
+                            <span style="margin-left: 71px;">
+                                <t t-esc="detailed_content.city"/>
+                                <t t-esc="detailed_content.state.name"/>
+                                <t t-esc="detailed_content.zip"/>,
+                            </span>
+                            <br/>
+                            <span style="margin-left: 71px;"
+                                  t-esc="detailed_content.country.name"/>
+                        </div>
+                        <div class="col-6">
+                            <b>Phone</b>
+                            :
+                            <span t-esc="detailed_content.phone"/>
+                            <br/>
+                            <b>Birth Date</b>
+                            :
+                            <span t-esc="detailed_content.birth_date"/>
+                            <br/>
+                            <b>Email</b>
+                            :
+                            <span t-esc="detailed_content.email"/>
+                            <br/>
+                            <b>Allocated Teacher</b>
+                            :
+                            <span t-esc="detailed_content.allocated_id.name"/>
+                        </div>
                     </div>
-                    <div>
-                        <span><b>Address</b> : <t t-esc="detailed_content.street"/><br/><t t-esc="detailed_content.street2"/></span>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Student Create Form Page -->
+    <template id="student_create_form"
+              name="Student Website Portal Form">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <h3 style="margin-right: 475px;">Student Form</h3>
+            </t>
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <form role="form"
+                              t-attf-action="/my/student/create"
+                              method="POST">
+                            <input type="hidden" name="csrf_token"
+                                   t-att-value="request.csrf_token()"/>
+                            <div class="form-group">
+                                <label for="name" class="control-label">
+                                    Name
+                                </label>
+                                <br/>
+                                <input type="text" class="bulk_style"
+                                       name="name"
+                                       t-att-value="name" id="name"
+                                       placeholder="Enter Name"
+                                       required="required"/>
+                                <div>
+                                    <label for="phone"
+                                           class="control-label">Phone
+                                    </label>
+                                    <br/>
+                                    <input type="text" id="phone"
+                                           class="bulk_style"
+                                           name="phone"
+                                           t-att-value="phone"
+                                           placeholder="Enter Phone Number"/>
+                                </div>
+                                <div>
+                                    <label for="user_id"
+                                           class="control-label">Birth
+                                        Date
+                                    </label>
+                                    <br/>
+                                    <input type="date" id="birth_date"
+                                           class="bulk_style"
+                                           name="birth_date"
+                                           t-att-value="birth_date"/>
+                                </div>
+                                <div>
+                                    <label for="email"
+                                           class="control-label">Email
+                                    </label>
+                                    <br/>
+                                    <input type="email"
+                                           class="bulk_style"
+                                           name="email"
+                                           t-att-value="email"
+                                           id="email"
+                                           placeholder="Enter Email"/>
+                                </div>
+                                <div id="teacher">
+                                    <label for="allocated_id"
+                                           class="control-label">
+                                        Allocate Teacher
+                                    </label>
+                                    <br/>
+                                    <select id="allocated_id"
+                                            class="m2o_style"
+                                            name="allocated_id">
+                                        <t t-foreach="teacher_id"
+                                           t-as="user">
+                                            <option value=""
+                                                    disabled="disabled"
+                                                    selected="selected"
+                                                    hidden="hidden">
+                                                Allocate Teacher
+                                            </option>
+                                            <option t-att-value="user.id"
+                                                    t-esc="user.name"/>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="address_panel">
+                                <label id="address"
+                                       class="control-label">Address
+                                </label>
+                                <input type="text" id="street"
+                                       name="street"
+                                       t-att-value="street"
+                                       placeholder="Enter Street"/>
+                                <br/>
+                                <input type="text" id="street2"
+                                       class="addressing"
+                                       name="street2"
+                                       t-att-value="street2"
+                                       placeholder="Enter Street2"/>
+                                <br/>
+                                <input type="text" id="city"
+                                       name="city"
+                                       class="addressing"
+                                       style="margin-top: 5px;"
+                                       t-att-value="city"
+                                       placeholder="Enter City"/>
+                                <input type="text" id="zip"
+                                       name="zip"
+                                       placeholder="ZIP Code"/>
+                                <br/>
+                                <select id="state"
+                                        class="addressing"
+                                        style="margin-top: 5px; width: 210px; height: 30px;"
+                                        name="state">
+                                    <t t-foreach="state_id"
+                                       t-as="states">
+                                        <option value=""
+                                                disabled="disabled"
+                                                selected="selected"
+                                                hidden="hidden">Select
+                                            State
+                                        </option>
+                                        <option t-att-value="states.id"
+                                                t-esc="states.name"/>
+                                    </t>
+                                </select>
+                                <select id="country"
+                                        style="width: 210px; height: 30px;"
+                                        name="country">
+                                    <t t-foreach="country_id"
+                                       t-as="countries">
+                                        <option value=""
+                                                disabled="disabled"
+                                                selected="selected"
+                                                hidden="hidden">Select
+                                            Country
+                                        </option>
+                                        <option t-att-value="countries.id"
+                                                t-esc="countries.name"/>
+                                    </t>
+                                </select>
+                                <br/>
+                                <a id="submit_btn"
+                                   type="button"
+                                   class="btn btn-primary"
+                                   style="color: white;">
+                                    Submit
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="student_thankyou_page" name="Thank You">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <center>
+                            <h2>
+                                <b>
+                                    Thank You For Creating Contact
+                                </b>
+                            </h2>
+                        </center>
                     </div>
                 </div>
             </div>

@@ -24,9 +24,11 @@
         'views/student_website_portal_views.xml',
         'views/student_website_portal_template.xml'
     ],
-    'web.assets_frontend': [
-        'student_website_portal/static/src/js/create_edit_data.js',
-        'student_website_portal/static/src/css/student_create_form.css'
-    ],
+    'assets': {
+        'web.assets_frontend': [
+            'student_website_portal/static/src/js/create_edit_data.js',
+            'student_website_portal/static/src/css/student_create_form.css',
+        ],
+    }
 
 }

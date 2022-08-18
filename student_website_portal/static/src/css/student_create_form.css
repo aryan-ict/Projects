@@ -14,16 +14,9 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-}
-.m2oline_style {
- width: 100%;
+  background-color: white;
 }
 
-.line-2 {
-  border-top: 1px solid black;
-}
-
-.btn_purple {
-    background-color: #800080;
-    color: white;
+.addressing {
+    margin-left: 64px;
 }
