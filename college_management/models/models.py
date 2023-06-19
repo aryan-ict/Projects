@@ -64,12 +64,8 @@ class CollegeManagement(models.Model):
         return res
 
     def send_email_button(self):
-        print("email")
         template_id = self.env.ref("college_management.mail_template_college_confirmation").id
-        print("=====================", self.env['mail.template'].browse(template_id))
-        template = self.env['mail.template'].browse(template_id)
-        print("----------------------", template)
-        template.send_mail(self.id, force_send=True)
+        template_id.send_mail(self.id, force_send=True)
 
         # @api.model
         # def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):

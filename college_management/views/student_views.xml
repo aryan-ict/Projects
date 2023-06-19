@@ -1,7 +1,6 @@
 <odoo>
     <data>
 
-
         <record model="ir.ui.view" id="student_form">
             <field name="name">student_form form</field>
             <field name="model">student.form</field>
