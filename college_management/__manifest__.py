@@ -10,7 +10,7 @@
     'author': "My Company",
     'website': "http://www.yourcompany.com",
     'category': 'Uncategorized',
-    'version': '15.0.0.1.2',
+    'version': '15.0.0.1.3',
     'depends': [
         'base',
         'mail',
